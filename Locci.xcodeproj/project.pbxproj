@@ -164,6 +164,7 @@
 				TargetAttributes = {
 					201D092C1A42CAA30022B967 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 2SRPKL265J;
 					};
 					201D09441A42CAA30022B967 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -171,7 +172,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 201D09281A42CAA30022B967 /* Build configuration list for PBXProject "LocciDev" */;
+			buildConfigurationList = 201D09281A42CAA30022B967 /* Build configuration list for PBXProject "Locci" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -340,9 +341,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = LocciDev/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LocciDev;
 			};
 			name = Debug;
 		};
@@ -350,9 +352,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = LocciDev/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LocciDev;
 			};
 			name = Release;
 		};
@@ -370,7 +373,7 @@
 				);
 				INFOPLIST_FILE = LocciDevTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LocciDevTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocciDev.app/LocciDev";
 			};
 			name = Debug;
@@ -385,7 +388,7 @@
 				);
 				INFOPLIST_FILE = LocciDevTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LocciDevTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocciDev.app/LocciDev";
 			};
 			name = Release;
@@ -393,7 +396,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		201D09281A42CAA30022B967 /* Build configuration list for PBXProject "LocciDev" */ = {
+		201D09281A42CAA30022B967 /* Build configuration list for PBXProject "Locci" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				201D094D1A42CAA30022B967 /* Debug */,
@@ -409,6 +412,7 @@
 				201D09511A42CAA30022B967 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		201D09521A42CAA30022B967 /* Build configuration list for PBXNativeTarget "LocciDevTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +421,7 @@
 				201D09541A42CAA30022B967 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -10,9 +10,14 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var btnContinue: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // Making the button rounded at the corners
+        btnContinue.layer.cornerRadius = 15.0
     }
 
     override func didReceiveMemoryWarning() {
