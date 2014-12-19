@@ -55,6 +55,9 @@
                     </view>
                     <connections>
                         <outlet property="btnContinue" destination="Wms-4d-cGl" id="59u-Ni-ai9"/>
+                        <outlet property="lblOne" destination="OIg-Fu-Iub" id="70F-Yo-vlo"/>
+                        <outlet property="lblThree" destination="f5j-Ci-y5Z" id="xMS-YS-Z9h"/>
+                        <outlet property="lblTwo" destination="Zf3-Pn-UI8" id="anr-QJ-lQN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
