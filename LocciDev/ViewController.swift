@@ -30,7 +30,9 @@ class ViewController: UIViewController {
         
         lblOne.text = "Store notes based on location."
         lblTwo.text = "Get notified when you are near your note."
-        lblThree.text = "Share your notes with your friends via text, email or social media."
+        //lblThree.text = "Share your notes with your friends via text, email or social media."
+        
+        lblThree.text = "Your notes are private and accessible only to you."
         
         btnContinue.setTitle("continue", forState: UIControlState.Normal)
         
