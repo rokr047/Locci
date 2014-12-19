@@ -14,6 +14,7 @@
 		201D093D1A42CAA30022B967 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 201D093C1A42CAA30022B967 /* Images.xcassets */; };
 		201D09401A42CAA30022B967 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 201D093E1A42CAA30022B967 /* LaunchScreen.xib */; };
 		201D094C1A42CAA30022B967 /* LocciDevTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201D094B1A42CAA30022B967 /* LocciDevTests.swift */; };
+		20ED9F6A1A440F2B00BD2CDD /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ED9F691A440F2B00BD2CDD /* HomeScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		201D09451A42CAA30022B967 /* LocciDevTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocciDevTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		201D094A1A42CAA30022B967 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		201D094B1A42CAA30022B967 /* LocciDevTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocciDevTests.swift; sourceTree = "<group>"; };
+		20ED9F691A440F2B00BD2CDD /* HomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		201D092F1A42CAA30022B967 /* LocciDev */ = {
 			isa = PBXGroup;
 			children = (
+				20ED9F691A440F2B00BD2CDD /* HomeScreenViewController.swift */,
 				201D09321A42CAA30022B967 /* AppDelegate.swift */,
 				201D09371A42CAA30022B967 /* ViewController.swift */,
 				201D09391A42CAA30022B967 /* Main.storyboard */,
@@ -217,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				201D09381A42CAA30022B967 /* ViewController.swift in Sources */,
+				20ED9F6A1A440F2B00BD2CDD /* HomeScreenViewController.swift in Sources */,
 				201D09361A42CAA30022B967 /* LocciDev.xcdatamodeld in Sources */,
 				201D09331A42CAA30022B967 /* AppDelegate.swift in Sources */,
 			);
