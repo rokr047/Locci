@@ -10,24 +10,47 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class AddNoteViewController: UIViewController, MKMapViewDelegate {
+class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
 
+    // Map
     @IBOutlet weak var mapView: MKMapView!
     var locationManager: CLLocationManager!
     
+    //Text & Button
     @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var btnCancel: UIButton!
-    
     @IBOutlet weak var txtNote: UITextView!
+    @IBOutlet weak var txtTitle: UITextField!
+    
+    //Alert Modal Window
+    var overlayView: UIView!
+    var alertView: UIView!
+    var animator: UIDynamicAnimator!
+    var attachmentBehavior : UIAttachmentBehavior!
+    var snapBehavior : UISnapBehavior!
+    
+    //Alert window information
+    let alertWidth: CGFloat = 250
+    let alertHeight: CGFloat = 150
+    
+    //The alert label
+    var txtAlert = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Load the map
+
+        //Set up Location Manager
         locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
-        mapView.showsUserLocation = true
+        locationManager.startUpdatingLocation()
+        
+        //Set up Map View
         mapView.delegate = self
+        mapView.mapType = MKMapType.Standard
+        mapView.showsUserLocation = true
+        mapView.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
         
         btnSave.layer.cornerRadius = 15.0
         btnCancel.layer.cornerRadius = 15.0
@@ -37,14 +60,197 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate {
         var tapGesture = UITapGestureRecognizer(target: self, action: Selector("fnHandleTapGestureOnTextNote:"))
         txtNote.addGestureRecognizer(tapGesture)
         
+        // Initialize the animator
+        animator = UIDynamicAnimator(referenceView: view)
+        
+        // Create the dark background view and the alert view
+        fnCreateOverlay()
+        fnCreateAlert()
     }
     
     func fnHandleTapGestureOnTextNote(tapGesture: UITapGestureRecognizer) {
         println("tap.")
     }
+    
+    // http://www.sitepoint.com/using-uikit-dynamics-swift-animate-apps
+    func fnCreateOverlay() {
+        // Create a gray view and set its alpha to 0 so it isn't visible
+        overlayView = UIView(frame: view.bounds)
+        overlayView.backgroundColor = UIColor.blackColor()
+        overlayView.alpha = 0.0
+        view.addSubview(overlayView)
+    }
+    
+    func fnCreateAlert() {
+        // Here the red alert view is created. It is created with rounded corners and given a shadow around it
+        let alertViewFrame: CGRect = CGRectMake(0, 0, alertWidth, alertHeight)
+        alertView = UIView(frame: alertViewFrame)
+        alertView.backgroundColor = UIColor.whiteColor()
+        alertView.alpha = 0.0
+        alertView.layer.cornerRadius = 10;
+        alertView.layer.shadowColor = UIColor.blackColor().CGColor;
+        alertView.layer.shadowOffset = CGSizeMake(0, 5);
+        alertView.layer.shadowOpacity = 0.3;
+        alertView.layer.shadowRadius = 10.0;
+        
+        // Create a button and set a listener on it for when it is tapped. Then the button is added to the alert view
+        let btnDismiss = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        btnDismiss.setTitle("dismiss", forState: UIControlState.Normal)
+        btnDismiss.backgroundColor = UIColor.darkGrayColor()
+        btnDismiss.frame = CGRectMake(0, 0, alertWidth, 40.0)
+        btnDismiss.titleLabel!.font = UIFont(name: "Avenir Next Ultra Light", size: 25.0)
+        
+        //Alert text information
+        txtAlert.text = "Lorum Ipsum"
+        txtAlert.textColor = UIColor.redColor()
+        txtAlert.frame = CGRectMake(0, 40.0, alertWidth, alertHeight-40.0)
+        txtAlert.textAlignment = NSTextAlignment.Center
+        txtAlert.font = UIFont(name: "Avenir Next Ultra Light", size: 16.0)
+        txtAlert.numberOfLines = 0
+        txtAlert.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        
+        btnDismiss.addTarget(self, action: Selector("fnDismissAlert"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        alertView.addSubview(btnDismiss)
+        alertView.addSubview(txtAlert)
+        view.addSubview(alertView)
+    }
+    
+    func fnShowAlert(_text: String) {
+        // When the alert view is dismissed, I destroy it, so I check for this condition here
+        // since if the Show Alert button is tapped again after dismissing, alertView will be nil
+        // and so should be created again
+        if (alertView == nil) {
+            fnCreateAlert()
+        }
+        
+        // I create the pan gesture recognizer here and not in ViewDidLoad() to
+        // prevent the user moving the alert view on the screen before it is shown.
+        // Remember, on load, the alert view is created but invisible to user, so you
+        // don't want the user moving it around when they swipe or drag on the screen.
+        //fnCreateGestureRecognizer()
+        
+        animator.removeAllBehaviors()
+        
+        // Animate in the overlay
+        UIView.animateWithDuration(0.4) {
+            self.overlayView.alpha = 0.5
+        }
+        
+        //Set alert text
+        txtAlert.text = _text
+        
+        // Animate the alert view using UIKit Dynamics.
+        alertView.alpha = 1.0
+        
+        var snapBehaviour: UISnapBehavior = UISnapBehavior(item: alertView, snapToPoint: view.center)
+        animator.addBehavior(snapBehaviour)
+    }
+    
+    func fnDismissAlert() {
+        
+        animator.removeAllBehaviors()
+        
+        var gravityBehaviour: UIGravityBehavior = UIGravityBehavior(items: [alertView])
+        gravityBehaviour.gravityDirection = CGVectorMake(0.0, 10.0);
+        animator.addBehavior(gravityBehaviour)
+        
+        // This behaviour is included so that the alert view tilts when it falls, otherwise it will go straight down
+        var itemBehaviour: UIDynamicItemBehavior = UIDynamicItemBehavior(items: [alertView])
+        itemBehaviour.addAngularVelocity(CGFloat(-M_PI_2), forItem: alertView)
+        animator.addBehavior(itemBehaviour)
+        
+        // Animate out the overlay, remove the alert view from its superview and set it to nil
+        // If you don't set it to nil, it keeps falling off the screen and when Show Alert button is
+        // tapped again, it will snap into view from below. It won't have the location settings we defined in createAlert()
+        // And the more it 'falls' off the screen, the longer it takes to come back into view, so when the Show Alert button
+        // is tapped again after a considerable time passes, the app seems unresponsive for a bit of time as the alert view
+        // comes back up to the screen
+        UIView.animateWithDuration(0.4, animations: {
+            self.overlayView.alpha = 0.0
+            }, completion: {
+                (value: Bool) in
+                self.alertView.removeFromSuperview()
+                self.alertView = nil
+        })
+    }
+    
+    func fnCreateGestureRecognizer() {
+        let panGestureRecognizer: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: Selector("fnHandlePan:"))
+        view.addGestureRecognizer(panGestureRecognizer)
+    }
+    
+    // This gets called when a pan gesture is recognized. It was set as the selector for the UIPanGestureRecognizer in the
+    // createGestureRecognizer() function
+    // We check for different states of the pan and do something different in each state
+    // In Began, we create an attachment behaviour. We add an offset from the center to make the alert view twist in the
+    // the direction of the pan
+    // In Changed we set the attachment behaviour's anchor point to the location of the user's touch
+    // When the user stops dragging (In Ended), we snap the alert view back to the view's center (which is where it was originally located)
+    // When the user drags the view too far down, we dismiss the view
+    // I check whether the alert view is not nil before taking action. This ensures that when the user dismisses the alert view
+    // and drags on the screen, the app will not crash as it tries to move a view that hasn't been initialized.
+    func fnHandlePan(sender: UIPanGestureRecognizer) {
+        
+        if (alertView != nil) {
+            let panLocationInView = sender.locationInView(view)
+            let panLocationInAlertView = sender.locationInView(alertView)
+            
+            if sender.state == UIGestureRecognizerState.Began {
+                animator.removeAllBehaviors()
+                
+                let offset = UIOffsetMake(panLocationInAlertView.x - CGRectGetMidX(alertView.bounds), panLocationInAlertView.y - CGRectGetMidY(alertView.bounds));
+                attachmentBehavior = UIAttachmentBehavior(item: alertView, offsetFromCenter: offset, attachedToAnchor: panLocationInView)
+                
+                animator.addBehavior(attachmentBehavior)
+            }
+            else if sender.state == UIGestureRecognizerState.Changed {
+                attachmentBehavior.anchorPoint = panLocationInView
+            }
+            else if sender.state == UIGestureRecognizerState.Ended {
+                animator.removeAllBehaviors()
+                
+                snapBehavior = UISnapBehavior(item: alertView, snapToPoint: view.center)
+                animator.addBehavior(snapBehavior)
+                
+                if sender.translationInView(view).y > 100 {
+                    fnDismissAlert()
+                }
+            }
+        }
+    }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true);
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func AddNote(sender: UIButton) {
+        
+        //Show alerts messages for incorrect or missing data
+        var aText = ""
+        
+        if txtTitle.text.isEmpty {
+            aText = "you are missing a title for your note"
+        }
+        
+        if txtNote.text.compare("click here to enter your note", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) == NSComparisonResult.OrderedSame {
+            if !aText.isEmpty {
+                aText = aText + " and "
+            }
+            aText = aText + "you have not entered your note yet."
+        }
+        
+        if !aText.isEmpty {
+            fnShowAlert(aText)
+        }
+    }
+    
+    @IBAction func CancelNote(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
     }
 }
