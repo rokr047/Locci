@@ -247,6 +247,10 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
             let noteVC: EditNoteViewController = segue.destinationViewController as EditNoteViewController
             
             noteVC.delegate = self
+            
+            if txtNote.text != "click here to enter your note" {
+                noteVC.currentNote = txtNote.text
+            }
         }
     }
     
