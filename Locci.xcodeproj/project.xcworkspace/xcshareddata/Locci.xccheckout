@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3992CB35-28A1-4697-9E49-A95BAC0EBBE1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Locci</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E6E716C40A0D18652E3782DCB8B755998F85E544</key>
+		<string>https://github.com/rokr047/Locci.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Locci.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E6E716C40A0D18652E3782DCB8B755998F85E544</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/rokr047/Locci.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E6E716C40A0D18652E3782DCB8B755998F85E544</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E6E716C40A0D18652E3782DCB8B755998F85E544</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LocciDev</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -7,11 +7,18 @@
 //
 
 import UIKit
+import MapKit
 
-class HomeScreenViewController: UIViewController {
+class HomeScreenViewController: UIViewController, CLLocationManagerDelegate {
 
+    var locationManager: CLLocationManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
     }
 
     override func didReceiveMemoryWarning() {

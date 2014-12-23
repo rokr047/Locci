@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
+class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate, CLLocationManagerDelegate, NoteEnteredDelegate {
 
     // Map
     @IBOutlet weak var mapView: MKMapView!
@@ -43,7 +43,6 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         
         //Set up Map View
@@ -70,6 +69,15 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     
     func fnHandleTapGestureOnTextNote(tapGesture: UITapGestureRecognizer) {
         println("tap.")
+        /* Redacted Code
+        //let vcEditNote = self.storyboard?.instantiateViewControllerWithIdentifier("vcEditNote") as EditNoteViewController
+        
+        //presentingViewController?.modalInPopover = true
+        //presentViewController(vcEditNote, animated: true, completion: nil)
+        */
+        
+        //Trigger segue via code
+        self.performSegueWithIdentifier("EditNoteSegue", sender: nil)
     }
     
     // http://www.sitepoint.com/using-uikit-dynamics-swift-animate-apps
@@ -220,6 +228,11 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         }
     }
     
+    //Delegate method that gets the note data from modal view
+    func userDidEnterNote(noteText: NSString) {
+        txtNote.text = noteText
+    }
+    
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.view.endEditing(true);
     }
@@ -227,6 +240,14 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "EditNoteSegue" {
+            let noteVC: EditNoteViewController = segue.destinationViewController as EditNoteViewController
+            
+            noteVC.delegate = self
+        }
     }
     
     @IBAction func AddNote(sender: UIButton) {
