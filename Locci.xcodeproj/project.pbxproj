@@ -14,6 +14,8 @@
 		201D093D1A42CAA30022B967 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 201D093C1A42CAA30022B967 /* Images.xcassets */; };
 		201D09401A42CAA30022B967 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 201D093E1A42CAA30022B967 /* LaunchScreen.xib */; };
 		201D094C1A42CAA30022B967 /* LocciDevTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201D094B1A42CAA30022B967 /* LocciDevTests.swift */; };
+		20654F5C1A4D28D300C24102 /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20654F5B1A4D28D300C24102 /* Notes.swift */; };
+		20654F5E1A4D52B400C24102 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20654F5D1A4D52B400C24102 /* CoreLocation.framework */; };
 		2086C43B1A4BD2DF00DE2553 /* ViewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2086C43A1A4BD2DF00DE2553 /* ViewNoteViewController.swift */; };
 		209D71511A49575200CD9015 /* EditNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D71501A49575200CD9015 /* EditNoteViewController.swift */; };
 		20ED9F6A1A440F2B00BD2CDD /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ED9F691A440F2B00BD2CDD /* HomeScreenViewController.swift */; };
@@ -42,6 +44,8 @@
 		201D09451A42CAA30022B967 /* LocciDevTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocciDevTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		201D094A1A42CAA30022B967 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		201D094B1A42CAA30022B967 /* LocciDevTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocciDevTests.swift; sourceTree = "<group>"; };
+		20654F5B1A4D28D300C24102 /* Notes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
+		20654F5D1A4D52B400C24102 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2086C43A1A4BD2DF00DE2553 /* ViewNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewNoteViewController.swift; sourceTree = "<group>"; };
 		209D71501A49575200CD9015 /* EditNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNoteViewController.swift; sourceTree = "<group>"; };
 		20ED9F691A440F2B00BD2CDD /* HomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20654F5E1A4D52B400C24102 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +74,7 @@
 		201D09241A42CAA30022B967 = {
 			isa = PBXGroup;
 			children = (
+				20654F5D1A4D52B400C24102 /* CoreLocation.framework */,
 				201D092F1A42CAA30022B967 /* LocciDev */,
 				201D09481A42CAA30022B967 /* LocciDevTests */,
 				201D092E1A42CAA30022B967 /* Products */,
@@ -98,6 +104,7 @@
 				201D09341A42CAA30022B967 /* LocciDev.xcdatamodeld */,
 				201D09301A42CAA30022B967 /* Supporting Files */,
 				2086C43A1A4BD2DF00DE2553 /* ViewNoteViewController.swift */,
+				20654F5B1A4D28D300C24102 /* Notes.swift */,
 			);
 			path = LocciDev;
 			sourceTree = "<group>";
@@ -235,6 +242,7 @@
 				20ED9F6C1A44251B00BD2CDD /* AddNoteViewController.swift in Sources */,
 				209D71511A49575200CD9015 /* EditNoteViewController.swift in Sources */,
 				201D09331A42CAA30022B967 /* AppDelegate.swift in Sources */,
+				20654F5C1A4D28D300C24102 /* Notes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

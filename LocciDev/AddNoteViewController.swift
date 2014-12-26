@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import CoreData
 
 class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate, CLLocationManagerDelegate, NoteEnteredDelegate {
 
@@ -16,11 +17,13 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     @IBOutlet weak var mapView: MKMapView!
     var locationManager: CLLocationManager!
     
-    //Text & Button
+    //Texts, Labels & Buttons
     @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var txtNote: UITextView!
     @IBOutlet weak var txtTitle: UITextField!
+    @IBOutlet weak var lblLocation: UILabel!
+    @IBOutlet weak var lblLatLong: UILabel!
     
     //Alert Modal Window
     var overlayView: UIView!
@@ -35,6 +38,10 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     
     //The alert label
     var txtAlert = UILabel()
+    
+    //Location Data
+    var curLatitude: Double = 0.0
+    var curLongitude: Double = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +75,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     }
     
     func fnHandleTapGestureOnTextNote(tapGesture: UITapGestureRecognizer) {
-        println("tap.")
+        //println("tap.")
         /* Redacted Code
         //let vcEditNote = self.storyboard?.instantiateViewControllerWithIdentifier("vcEditNote") as EditNoteViewController
         
@@ -273,9 +280,104 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         if !aText.isEmpty {
             fnShowAlert(aText)
         }
+        
+        //Code to save the note infro to CoreData
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let context: NSManagedObjectContext = appDelegate.managedObjectContext!
+        
+        //let _entity = NSEntityDescription.entityForName("Notes", inManagedObjectContext: context)
+        
+        var newNote = NSEntityDescription.insertNewObjectForEntityForName("Notes", inManagedObjectContext: context) as Notes
+        
+        //var newNote = Notes(entity: _entity!, insertIntoManagedObjectContext: context)
+        newNote.title = txtTitle.text
+        newNote.text = txtNote.text
+        newNote.latitude = curLatitude
+        newNote.longitude = curLongitude
+        
+        context.save(nil) //TODO NSErrorPointer error handling
+        locationManager.stopUpdatingLocation()
+        println("note saved")
     }
     
     @IBAction func CancelNote(sender: AnyObject) {
+        
+        //Code to test if data is stored correctly in CoreData
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let context: NSManagedObjectContext = appDelegate.managedObjectContext!
+        
+        let fRequest = NSFetchRequest(entityName: "Notes")
+        fRequest.returnsObjectsAsFaults = false
+        
+        var results: NSArray = context.executeFetchRequest(fRequest, error: nil)!
+        
+        println("found \(results.count) notes")
+        
+        if results.count > 0 {
+            for note in results {
+                var thisNote = note as Notes
+                println("noteTitle: \(thisNote.title)")
+                println("noteText: \(thisNote.text)")
+                println("noteLatitude: \(thisNote.latitude)")
+                println("noteLongitude: \(thisNote.longitude)")
+                println("----------------")
+            }
+        
+            println("notes loaded")
+        }
+        
         navigationController?.popViewControllerAnimated(true)
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
+    //Location Manager functions that gets back reverseGeoDecoded location data
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        println("Error while updating location " + error.localizedDescription)
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
+            
+            if (error != nil) {
+                println("Reverse geocoder failed with error" + error.localizedDescription)
+                return
+            }
+            
+            if placemarks.count > 0 {
+                let pm = placemarks[0] as CLPlacemark
+                self.displayLocationInfo(pm)
+            } else {
+                println("Problem with the data received from geocoder")
+            }
+        })
+    }
+    
+    func displayLocationInfo(placemark: CLPlacemark?) {
+        if let containsPlacemark = placemark {
+            //stop updating location to save battery life
+            //locationManager.stopUpdatingLocation()
+            
+            //Location Information
+            var locInfo: String = ""
+            
+            locInfo = (containsPlacemark.name != nil) ? containsPlacemark.name : ""
+            locInfo = (containsPlacemark.locality != nil) ? ("\(locInfo), \(containsPlacemark.locality)") : "\(locInfo)"
+            locInfo = (containsPlacemark.subAdministrativeArea != nil) ? ("\(locInfo), \(containsPlacemark.subAdministrativeArea)") : "\(locInfo)"
+            locInfo = (containsPlacemark.administrativeArea != nil) ? ("\(locInfo), \(containsPlacemark.administrativeArea)") : "\(locInfo)"
+            locInfo = (containsPlacemark.postalCode != nil) ? ("\(locInfo) \(containsPlacemark.postalCode)") : "\(locInfo)"
+            locInfo = (containsPlacemark.country != nil) ? ("\(locInfo), \(containsPlacemark.country)") : "\(locInfo)"
+
+            lblLocation.text = locInfo
+            
+            let curLocation: CLLocation = containsPlacemark.location
+            lblLatLong.text = "\(curLocation.coordinate.latitude) , \(curLocation.coordinate.longitude)"
+            
+            curLatitude = curLocation.coordinate.latitude as Double
+            curLongitude = curLocation.coordinate.longitude as Double
+        }
+        
     }
 }

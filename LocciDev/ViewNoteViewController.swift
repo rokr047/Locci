@@ -35,4 +35,8 @@ class ViewNoteViewController: UIViewController {
         
         self.presentViewController(actionSheet, animated: true, completion: nil)
     }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
 }
