@@ -16,22 +16,23 @@ class ViewNoteViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     @IBAction func ShowActionSheet(sender: AnyObject) {
-        let actionTitle = ""
-        let actionMessage = "Actions for current note"
+        let actionTitle = "actions for current note"
+        let actionMessage = ""
         
         let actionSheet = UIAlertController(title: actionTitle, message: actionMessage, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-        let action1 = UIAlertAction(title: "Edit Note", style: UIAlertActionStyle.Default, handler: nil)
-        let action2 = UIAlertAction(title: "Delete Note", style: UIAlertActionStyle.Destructive, handler: nil)
-        let action3 = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+        let shareAction = UIAlertAction(title: "share", style: UIAlertActionStyle.Default, handler: nil)
+        let editAction = UIAlertAction(title: "edit", style: UIAlertActionStyle.Default, handler: nil)
+        let deleteAction = UIAlertAction(title: "delete", style: UIAlertActionStyle.Destructive, handler: nil)
+        let cancelAction = UIAlertAction(title: "cancel", style: UIAlertActionStyle.Cancel, handler: nil)
         
-        actionSheet.addAction(action1)
-        actionSheet.addAction(action2)
-        actionSheet.addAction(action3)
+        actionSheet.addAction(shareAction)
+        actionSheet.addAction(editAction)
+        actionSheet.addAction(deleteAction)
+        actionSheet.addAction(cancelAction)
         
         self.presentViewController(actionSheet, animated: true, completion: nil)
     }
