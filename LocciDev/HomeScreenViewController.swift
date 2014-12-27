@@ -27,9 +27,12 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
         locationManager.requestAlwaysAuthorization()
         
         //TableView Test
-        testData = ["Apple", "Google", "Facebook", "Microsoft", "Dropbox", "Twitter", "Electronic Arts", "Rockstar", "Ubisoft", "Zynga", "Scopely", "Imangi", "Backflip", "Valve", "Amazon", "Flipkart"]
+        testData = ["Home", "Walmart", "Apple Work", "Microsoft", "Dropbox", "Twitter", "Electronic Arts", "Rockstar", "Ubisoft", "Zynga", "Scopely", "Imangi", "Backflip", "Valve", "Amazon", "Flipkart"]
         
-        testDetailData = ["Apple", "Google", "Facebook", "Microsoft", "Dropbox", "Twitter", "Electronic Arts", "Rockstar", "Ubisoft", "Zynga", "Scopely", "Imangi", "Backflip", "Valve", "Amazon", "Flipkart"]
+        testDetailData = ["2200 Monroe St", "1208 Jackson Ave", "Apple Inc.", "Microsoft", "Dropbox", "Twitter", "Electronic Arts", "Rockstar", "Ubisoft", "Zynga", "Scopely", "Imangi", "Backflip", "Valve", "Amazon", "Flipkart"]
+        
+        notesTable.rowHeight = 50
+        //notesTable.backgroundView = UIImageView(image: UIImage(named: "bg4"))
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,8 +59,23 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("noteCell", forIndexPath: indexPath) as UITableViewCell
         
+        //Setting opacity for odd and even rows
+        if (indexPath.row % 2 == 0) {
+            cell.backgroundColor = UIColor.clearColor()
+        } else {
+            cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(2.0)
+            cell.textLabel?.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.0)
+            cell.detailTextLabel?.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.0)
+        }
+        
         cell.textLabel?.text = testData[indexPath.row] as? String
-        cell.detailTextLabel?.text = testData[indexPath.row] as? String
+        cell.detailTextLabel?.text = testDetailData[indexPath.row] as? String
+        
+        //cell.textLabel?.textColor = UIColor.whiteColor()
+        //cell.detailTextLabel?.textColor = UIColor.whiteColor()
+        
+        cell.textLabel?.font = UIFont(name: "Avenir Light", size: 20)
+        cell.detailTextLabel?.font = UIFont(name: "Avenir Light", size: 12)
         
         return cell
     }
