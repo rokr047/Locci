@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
 
@@ -15,9 +16,7 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
     
     @IBOutlet weak var notesTable: UITableView!
     
-    //TableView Test
-    var testData: Array<AnyObject> = []
-    var testDetailData: Array<AnyObject> = []
+    var tableData: Array<AnyObject> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +25,23 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         
-        //TableView Test
-        testData = ["Home", "Walmart", "Apple Work", "Microsoft", "Dropbox", "Twitter", "Electronic Arts", "Rockstar", "Ubisoft", "Zynga", "Scopely", "Imangi", "Backflip", "Valve", "Amazon", "Flipkart"]
-        
-        testDetailData = ["2200 Monroe St", "1208 Jackson Ave", "Apple Inc.", "Microsoft", "Dropbox", "Twitter", "Electronic Arts", "Rockstar", "Ubisoft", "Zynga", "Scopely", "Imangi", "Backflip", "Valve", "Amazon", "Flipkart"]
-        
         notesTable.rowHeight = 50
         //notesTable.backgroundView = UIImageView(image: UIImage(named: "bg4"))
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let context: NSManagedObjectContext = appDelegate.managedObjectContext!
+        
+        let fRequest = NSFetchRequest(entityName: "Notes")
+        fRequest.returnsObjectsAsFaults = false
+        
+        tableData = context.executeFetchRequest(fRequest, error: nil)!
+        
+        self.notesTable.reloadData()
+        
+        println("found \(tableData.count) notes")
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,7 +62,7 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return testData.count
+        return tableData.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -68,14 +77,20 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
             cell.detailTextLabel?.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.0)
         }
         
-        cell.textLabel?.text = testData[indexPath.row] as? String
-        cell.detailTextLabel?.text = testDetailData[indexPath.row] as? String
+        cell.textLabel?.font = UIFont(name: "Avenir Light", size: 16)
+        cell.detailTextLabel?.font = UIFont(name: "Avenir Light", size: 10)
+        
+        if tableData.count == 0 {
+            return cell
+        }
+
+        var data = tableData[indexPath.row] as Notes
+        
+        cell.textLabel?.text = data.title
+        cell.detailTextLabel?.text = data.text
         
         //cell.textLabel?.textColor = UIColor.whiteColor()
         //cell.detailTextLabel?.textColor = UIColor.whiteColor()
-        
-        cell.textLabel?.font = UIFont(name: "Avenir Light", size: 20)
-        cell.detailTextLabel?.font = UIFont(name: "Avenir Light", size: 12)
         
         return cell
     }

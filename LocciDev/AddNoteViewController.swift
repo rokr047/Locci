@@ -298,34 +298,15 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         context.save(nil) //TODO NSErrorPointer error handling
         locationManager.stopUpdatingLocation()
         println("note saved")
+        
+        //Go back to home screen
+        navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func CancelNote(sender: AnyObject) {
         
-        //Code to test if data is stored correctly in CoreData
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        let context: NSManagedObjectContext = appDelegate.managedObjectContext!
-        
-        let fRequest = NSFetchRequest(entityName: "Notes")
-        fRequest.returnsObjectsAsFaults = false
-        
-        var results: NSArray = context.executeFetchRequest(fRequest, error: nil)!
-        
-        println("found \(results.count) notes")
-        
-        if results.count > 0 {
-            for note in results {
-                var thisNote = note as Notes
-                println("noteTitle: \(thisNote.title)")
-                println("noteText: \(thisNote.text)")
-                println("noteLatitude: \(thisNote.latitude)")
-                println("noteLongitude: \(thisNote.longitude)")
-                println("----------------")
-            }
-        
-            println("notes loaded")
-        }
-        
+        println("note canceled")
+        //Go back to home screen
         navigationController?.popViewControllerAnimated(true)
     }
     
