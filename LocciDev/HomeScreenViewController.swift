@@ -89,8 +89,8 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
         cell.textLabel?.text = data.title
         cell.detailTextLabel?.text = data.locationname
         
-        //cell.textLabel?.textColor = UIColor.whiteColor()
-        //cell.detailTextLabel?.textColor = UIColor.whiteColor()
+        //cell.textLabel?.textColor = UIColor.orangeColor()
+        //cell.detailTextLabel?.textColor = UIColor.blueColor()
         
         return cell
     }
