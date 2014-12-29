@@ -94,4 +94,29 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
         
         return cell
     }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // Return NO if you do not want the specified item to be editable.
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            // Delete the row from the data source
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        } else if editingStyle == .Insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // Get the row data for the selected row
+        var rowData = tableData[indexPath.row] as Notes
+        
+        var alert: UIAlertView = UIAlertView()
+        alert.title = "\(rowData.title)"
+        alert.message = "\(rowData.text) \(rowData.latitude) \(rowData.longitude)"
+        alert.addButtonWithTitle("Ok")
+        alert.show()
+    }
 }
