@@ -150,10 +150,10 @@
             </objects>
             <point key="canvasLocation" x="839" y="390"/>
         </scene>
-        <!--View Note View Controller-->
+        <!--vcViewNote-->
         <scene sceneID="6ca-6Q-CQG">
             <objects>
-                <viewController storyboardIdentifier="vcViewNote" id="fSG-ft-vCT" customClass="ViewNoteViewController" customModule="LocciDev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="vcViewNote" title="vcViewNote" id="fSG-ft-vCT" customClass="ViewNoteViewController" customModule="LocciDev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ouk-PY-TMz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -188,6 +188,9 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="Hak-pJ-TLq">
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="ViewNoteDone:" destination="fSG-ft-vCT" id="GIa-eV-M01"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -196,6 +199,9 @@
                         <color key="backgroundColor" red="0.16504854368932037" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="bFP-5T-eZs"/>
+                    <connections>
+                        <outlet property="navBar" destination="d3E-Jr-MLa" id="UG6-uA-wQp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2RG-SH-sCJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

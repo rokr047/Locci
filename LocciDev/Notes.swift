@@ -13,10 +13,12 @@ import CoreData
 @objc(Notes)
 class Notes: NSManagedObject {
    
+    @NSManaged var noteid: integer_t
     @NSManaged var title: String
     @NSManaged var text: String
     @NSManaged var latitude: Double
     @NSManaged var longitude: Double
+    @NSManaged var locationname: String
     
     //TODO Add more functions here to enhance functionality later
     

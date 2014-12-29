@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
 
@@ -90,6 +91,31 @@ class ViewController: UIViewController {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstlaunch1.0")
             NSUserDefaults.standardUserDefaults().synchronize();
         } else {
+            
+            //Code to save the note infro to CoreData
+            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            let context: NSManagedObjectContext = appDelegate.managedObjectContext!
+            
+            //let _entity = NSEntityDescription.entityForName("Notes", inManagedObjectContext: context)
+            
+            var newNote = NSEntityDescription.insertNewObjectForEntityForName("Notes", inManagedObjectContext: context) as Notes
+            
+            println("creating sample note")
+            //Need to get the current count to set the new noteid value
+            let fRequest = NSFetchRequest(entityName: "Notes")
+            let recordCount = appDelegate.managedObjectContext?.countForFetchRequest(fRequest, error: nil)
+            
+            //var newNote = Notes(entity: _entity!, insertIntoManagedObjectContext: context)
+            newNote.noteid = 1
+            newNote.title = "Sample Note"
+            newNote.text = "This is a sample note. Feel free to delete this and create your own :)"
+            newNote.latitude = 0.00
+            newNote.longitude = 0.00
+            newNote.locationname = "everywhere"
+            
+            context.save(nil) //TODO NSErrorPointer error handling
+            println("sample note saved")
+            
             println("Launch Home Screen : Button")
             let vcHomeScreen = self.storyboard?.instantiateViewControllerWithIdentifier("vcHomeScreen") as HomeScreenViewController
             

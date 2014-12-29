@@ -16,6 +16,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     // Map
     @IBOutlet weak var mapView: MKMapView!
     var locationManager: CLLocationManager!
+    var locationName: String = ""
     
     //Texts, Labels & Buttons
     @IBOutlet weak var btnSave: UIButton!
@@ -289,11 +290,17 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         
         var newNote = NSEntityDescription.insertNewObjectForEntityForName("Notes", inManagedObjectContext: context) as Notes
         
+        //Need to get the current count to set the new noteid value
+        let fRequest = NSFetchRequest(entityName: "Notes")
+        let recordCount = appDelegate.managedObjectContext?.countForFetchRequest(fRequest, error: nil)
+        
         //var newNote = Notes(entity: _entity!, insertIntoManagedObjectContext: context)
+        newNote.noteid = recordCount! + 0
         newNote.title = txtTitle.text
         newNote.text = txtNote.text
         newNote.latitude = curLatitude
         newNote.longitude = curLongitude
+        newNote.locationname = locationName
         
         context.save(nil) //TODO NSErrorPointer error handling
         locationManager.stopUpdatingLocation()
@@ -344,7 +351,8 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
             //Location Information
             var locInfo: String = ""
             
-            locInfo = (containsPlacemark.name != nil) ? containsPlacemark.name : ""
+            locationName = (containsPlacemark.name != nil) ? containsPlacemark.name : ""
+            locInfo = locationName
             locInfo = (containsPlacemark.locality != nil) ? ("\(locInfo), \(containsPlacemark.locality)") : "\(locInfo)"
             locInfo = (containsPlacemark.subAdministrativeArea != nil) ? ("\(locInfo), \(containsPlacemark.subAdministrativeArea)") : "\(locInfo)"
             locInfo = (containsPlacemark.administrativeArea != nil) ? ("\(locInfo), \(containsPlacemark.administrativeArea)") : "\(locInfo)"

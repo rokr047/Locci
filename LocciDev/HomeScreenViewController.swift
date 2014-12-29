@@ -87,7 +87,7 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
         var data = tableData[indexPath.row] as Notes
         
         cell.textLabel?.text = data.title
-        cell.detailTextLabel?.text = data.text
+        cell.detailTextLabel?.text = data.locationname
         
         //cell.textLabel?.textColor = UIColor.whiteColor()
         //cell.detailTextLabel?.textColor = UIColor.whiteColor()
@@ -115,8 +115,11 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
         
         var alert: UIAlertView = UIAlertView()
         alert.title = "\(rowData.title)"
-        alert.message = "\(rowData.text) \(rowData.latitude) \(rowData.longitude)"
+        alert.message = "\(rowData.noteid) \(rowData.text) \(rowData.locationname) \(rowData.latitude) \(rowData.longitude)"
         alert.addButtonWithTitle("Ok")
         alert.show()
+        
+        let vcViewNote = self.storyboard?.instantiateViewControllerWithIdentifier("vcViewNote") as ViewNoteViewController
+        self.navigationController?.pushViewController(vcViewNote, animated: true)
     }
 }

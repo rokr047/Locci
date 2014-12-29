@@ -10,8 +10,12 @@ import UIKit
 
 class ViewNoteViewController: UIViewController {
 
+    @IBOutlet weak var navBar: UINavigationBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navBar.topItem?.title = "Test title"
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,5 +43,8 @@ class ViewNoteViewController: UIViewController {
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
+    }
+    @IBAction func ViewNoteDone(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }
