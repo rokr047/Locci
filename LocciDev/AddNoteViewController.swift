@@ -262,8 +262,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         }
     }
     
-    @IBAction func AddNote(sender: UIButton) {
-        
+    @IBAction func AddNote(sender: UIButton) {        
         //Show alerts messages for incorrect or missing data
         var aText = ""
         
@@ -282,7 +281,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
             fnShowAlert(aText)
         }
         
-        //Code to save the note infro to CoreData
+        //Code to save the note info to CoreData
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let context: NSManagedObjectContext = appDelegate.managedObjectContext!
         

@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocciDev/AddNoteViewController.swift"
-            timestampString = "441522030.393182"
+            timestampString = "442099364.621023"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
             landmarkName = "AddNote(_:)"
             landmarkType = "5">
          </BreakpointContent>

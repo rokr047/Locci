@@ -89,7 +89,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Locci" id="TFf-cV-o6M">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="e4Y-51-eTx">
+                                        <barButtonItem key="leftBarButtonItem" title="Menu" id="e4Y-51-eTx">
                                             <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="6"/>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="KXx-u2-AiR">

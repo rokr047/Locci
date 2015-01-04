@@ -23,10 +23,10 @@ class ViewNoteViewController: UIViewController {
     }
 
     @IBAction func ShowActionSheet(sender: AnyObject) {
-        let actionTitle = "actions for current note"
-        let actionMessage = ""
+        //let actionTitle = "actions for current note"
+        //let actionMessage = ""
         
-        let actionSheet = UIAlertController(title: actionTitle, message: actionMessage, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
         let shareAction = UIAlertAction(title: "share", style: UIAlertActionStyle.Default, handler: nil)
         let editAction = UIAlertAction(title: "edit", style: UIAlertActionStyle.Default, handler: nil)
