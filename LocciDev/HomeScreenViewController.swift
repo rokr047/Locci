@@ -102,6 +102,12 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
+            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            let context: NSManagedObjectContext = appDelegate.managedObjectContext!
+            
+            context.deleteObject(tableData[indexPath.row] as NSManagedObject)
+            context.save(nil)
+            
             // Delete the row from the data source
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
@@ -111,15 +117,26 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Get the row data for the selected row
-        var rowData = tableData[indexPath.row] as Notes
+        //var rowData = tableData[indexPath.row] as Notes
         
+        /*
         var alert: UIAlertView = UIAlertView()
         alert.title = "\(rowData.title)"
         alert.message = "\(rowData.noteid) \(rowData.text) \(rowData.locationname) \(rowData.latitude) \(rowData.longitude)"
         alert.addButtonWithTitle("Ok")
         alert.show()
-        
-        let vcViewNote = self.storyboard?.instantiateViewControllerWithIdentifier("vcViewNote") as ViewNoteViewController
-        self.navigationController?.pushViewController(vcViewNote, animated: true)
+        */
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ViewNoteSegue" {
+            var nextVC: ViewNoteViewController = segue.destinationViewController as ViewNoteViewController
+            
+            var selectedRowIndex = self.notesTable.indexPathForSelectedRow()
+            var rowData = tableData[selectedRowIndex!.row] as Notes
+            nextVC.noteId = rowData.noteid
+            nextVC.noteData = rowData.text
+            nextVC.noteTitle = rowData.title
+        }
     }
 }

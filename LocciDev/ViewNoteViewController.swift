@@ -11,11 +11,19 @@ import UIKit
 class ViewNoteViewController: UIViewController {
 
     @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var noteText: UITextView!
+    
+    var noteId: integer_t = -1
+    var noteTitle: String = ""
+    var noteData: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navBar.topItem?.title = "Test title"
+        navBar.topItem?.title = noteTitle
+        noteText.text = noteData
+        
+        //println(noteId)
     }
 
     override func didReceiveMemoryWarning() {
