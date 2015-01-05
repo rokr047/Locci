@@ -7,15 +7,20 @@
 //
 
 import UIKit
+import MapKit
 
-class ViewNoteViewController: UIViewController {
+class ViewNoteViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var noteText: UITextView!
+    @IBOutlet weak var mapView: MKMapView!
     
     var noteId: integer_t = -1
     var noteTitle: String = ""
     var noteData: String = ""
+    var locationName: String = ""
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +28,21 @@ class ViewNoteViewController: UIViewController {
         navBar.topItem?.title = noteTitle
         noteText.text = noteData
         
-        //println(noteId)
+        //Set up Map View
+        mapView.delegate = self
+        mapView.mapType = MKMapType.Standard
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        //Add a pin to the map at the location where the user had saved the note
+        let noteCoordinate = CLLocationCoordinate2DMake(latitude, longitude)
+        
+        let annotation = CustomAnnotation(coordinate: noteCoordinate, title: noteTitle, subtitle: locationName)
+        //mapView.addAnnotation(annotation)
+        mapView.showAnnotations([annotation], animated: true)
+        
+        let regionToZoom = MKCoordinateRegionMake(noteCoordinate, MKCoordinateSpanMake(0.003, 0.003))
+        mapView.setRegion(regionToZoom, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,9 +55,9 @@ class ViewNoteViewController: UIViewController {
         
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-        let shareAction = UIAlertAction(title: "share", style: UIAlertActionStyle.Default, handler: nil)
-        let editAction = UIAlertAction(title: "edit", style: UIAlertActionStyle.Default, handler: nil)
-        let deleteAction = UIAlertAction(title: "delete", style: UIAlertActionStyle.Destructive, handler: nil)
+        let shareAction = UIAlertAction(title: "share", style: UIAlertActionStyle.Default, handler: shareActionHandler)
+        let editAction = UIAlertAction(title: "edit", style: UIAlertActionStyle.Default, handler: editActionHandler)
+        let deleteAction = UIAlertAction(title: "delete", style: UIAlertActionStyle.Destructive, handler: fnDeleteActionHandler)
         let cancelAction = UIAlertAction(title: "cancel", style: UIAlertActionStyle.Cancel, handler: nil)
         
         actionSheet.addAction(shareAction)
@@ -47,6 +66,25 @@ class ViewNoteViewController: UIViewController {
         actionSheet.addAction(cancelAction)
         
         self.presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
+    let shareActionHandler = { (action:UIAlertAction!) -> Void in
+        println("Note will be shared.")
+    }
+    
+    let editActionHandler = { (action:UIAlertAction!) -> Void in
+        println("Note will be edited.")
+    }
+    
+    let deleteActionHandler = { (action:UIAlertAction!) -> Void in
+        
+    }
+    
+    func fnDeleteActionHandler (action:UIAlertAction!) -> Void {
+        println("Note \(noteId) will be deleted from CoreData.")
+        Notes.DeleteNote(noteId)
+        println("note \(noteId) deleted")
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

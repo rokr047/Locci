@@ -209,6 +209,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="bFP-5T-eZs"/>
                     <connections>
+                        <outlet property="mapView" destination="smS-gL-aBV" id="dbL-Tk-5nz"/>
                         <outlet property="navBar" destination="d3E-Jr-MLa" id="UG6-uA-wQp"/>
                         <outlet property="noteText" destination="6EV-hT-fF2" id="je9-Ek-PLh"/>
                     </connections>

@@ -41,7 +41,7 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
         
         self.notesTable.reloadData()
         
-        println("found \(tableData.count) notes")
+        //println("found \(tableData.count) notes")
     }
 
     override func didReceiveMemoryWarning() {
@@ -137,6 +137,9 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
             nextVC.noteId = rowData.noteid
             nextVC.noteData = rowData.text
             nextVC.noteTitle = rowData.title
+            nextVC.locationName = rowData.locationname
+            nextVC.latitude = rowData.latitude
+            nextVC.longitude = rowData.longitude
         }
     }
 }
