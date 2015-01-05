@@ -22,6 +22,7 @@ class Notes: NSManagedObject {
     
     //TODO Add more functions here to enhance functionality later
     class func DeleteNote(id: integer_t) -> Bool {
+        //Delete the note with noteid = id
         
         var status: Bool = false
         
@@ -41,6 +42,14 @@ class Notes: NSManagedObject {
             context.save(nil)
             status = true
         }
+        
+        return status
+    }
+    
+    class func EditNote(id: integer_t, newTitle: String, newText: String) -> Bool {
+        //Edit note and set the updated data.
+        
+        var status: Bool = false
         
         return status
     }

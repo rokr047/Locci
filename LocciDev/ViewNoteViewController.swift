@@ -55,8 +55,8 @@ class ViewNoteViewController: UIViewController, MKMapViewDelegate {
         
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-        let shareAction = UIAlertAction(title: "share", style: UIAlertActionStyle.Default, handler: shareActionHandler)
-        let editAction = UIAlertAction(title: "edit", style: UIAlertActionStyle.Default, handler: editActionHandler)
+        let shareAction = UIAlertAction(title: "share", style: UIAlertActionStyle.Default, handler: fnShareActionHandler)
+        let editAction = UIAlertAction(title: "edit", style: UIAlertActionStyle.Default, handler: fnEditActionHandler)
         let deleteAction = UIAlertAction(title: "delete", style: UIAlertActionStyle.Destructive, handler: fnDeleteActionHandler)
         let cancelAction = UIAlertAction(title: "cancel", style: UIAlertActionStyle.Cancel, handler: nil)
         
@@ -68,22 +68,16 @@ class ViewNoteViewController: UIViewController, MKMapViewDelegate {
         self.presentViewController(actionSheet, animated: true, completion: nil)
     }
     
-    let shareActionHandler = { (action:UIAlertAction!) -> Void in
+    func fnShareActionHandler (action:UIAlertAction!) -> Void {
         println("Note will be shared.")
     }
     
-    let editActionHandler = { (action:UIAlertAction!) -> Void in
+    func fnEditActionHandler (action:UIAlertAction!) -> Void {
         println("Note will be edited.")
     }
     
-    let deleteActionHandler = { (action:UIAlertAction!) -> Void in
-        
-    }
-    
     func fnDeleteActionHandler (action:UIAlertAction!) -> Void {
-        println("Note \(noteId) will be deleted from CoreData.")
         Notes.DeleteNote(noteId)
-        println("note \(noteId) deleted")
         self.navigationController?.popViewControllerAnimated(true)
     }
     

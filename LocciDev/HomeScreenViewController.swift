@@ -106,6 +106,7 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
             let context: NSManagedObjectContext = appDelegate.managedObjectContext!
             
             context.deleteObject(tableData[indexPath.row] as NSManagedObject)
+            tableData.removeAtIndex(indexPath.row)
             context.save(nil)
             
             // Delete the row from the data source
