@@ -42,7 +42,7 @@ class ViewNoteViewController: UIViewController, MKMapViewDelegate {
         mapView.showAnnotations([annotation], animated: true)
         
         let regionToZoom = MKCoordinateRegionMake(noteCoordinate, MKCoordinateSpanMake(0.003, 0.003))
-        mapView.setRegion(regionToZoom, animated: true)
+        mapView.setRegion(regionToZoom, animated: false)
     }
 
     override func didReceiveMemoryWarning() {

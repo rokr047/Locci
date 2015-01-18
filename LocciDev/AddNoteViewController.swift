@@ -265,20 +265,24 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     @IBAction func AddNote(sender: UIButton) {        
         //Show alerts messages for incorrect or missing data
         var aText = ""
+        var isMissingEntry = false
         
         if txtTitle.text.isEmpty {
             aText = "you are missing a title for your note"
+            isMissingEntry = true
         }
         
-        if txtNote.text.compare("click here to enter your note", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) == NSComparisonResult.OrderedSame {
+        if  txtNote.text.isEmpty || txtNote.text.compare("click here to enter your note", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) == NSComparisonResult.OrderedSame {
             if !aText.isEmpty {
                 aText = aText + " and "
             }
             aText = aText + "you have not entered your note yet."
+            isMissingEntry = true
         }
         
-        if !aText.isEmpty {
+        if isMissingEntry {
             fnShowAlert(aText)
+            return
         }
         
         //Code to save the note info to CoreData
