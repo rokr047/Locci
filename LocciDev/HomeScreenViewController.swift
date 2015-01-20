@@ -141,6 +141,9 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
             nextVC.locationName = rowData.locationname
             nextVC.latitude = rowData.latitude
             nextVC.longitude = rowData.longitude
+            
+            var selectedNote: NSManagedObject = tableData[selectedRowIndex!.row] as NSManagedObject
+            nextVC.selectedNote = selectedNote
         }
     }
 }

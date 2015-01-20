@@ -8,8 +8,9 @@
 
 import UIKit
 import MapKit
+import CoreData
 
-class ViewNoteViewController: UIViewController, MKMapViewDelegate {
+class ViewNoteViewController: UIViewController, MKMapViewDelegate, NoteUpdatedDelegate {
 
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var noteText: UITextView!
@@ -21,6 +22,8 @@ class ViewNoteViewController: UIViewController, MKMapViewDelegate {
     var locationName: String = ""
     var latitude: Double = 0.0
     var longitude: Double = 0.0
+    
+    var selectedNote: NSManagedObject!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,11 +72,24 @@ class ViewNoteViewController: UIViewController, MKMapViewDelegate {
     }
     
     func fnShareActionHandler (action:UIAlertAction!) -> Void {
-        println("Note will be shared.")
+        println("launching share options...")
+        
+        let textToShare = "\(noteTitle).\n\(noteData).\nGet #Locci at rokr047.com/Locci"
+        
+        let objectsToShare = [textToShare]
+            
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        
+        //New Excluded Activities Code
+        activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList, UIActivityTypeSaveToCameraRoll]
+            
+        self.presentViewController(activityVC, animated: true, completion: nil)
     }
     
     func fnEditActionHandler (action:UIAlertAction!) -> Void {
-        println("Note will be edited.")
+        println("Note sent for editing.")
+        //Trigger segue via code
+        self.performSegueWithIdentifier("EditGeoNoteSegue", sender: nil)
     }
     
     func fnDeleteActionHandler (action:UIAlertAction!) -> Void {
@@ -84,7 +100,31 @@ class ViewNoteViewController: UIViewController, MKMapViewDelegate {
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
+    
     @IBAction func ViewNoteDone(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "EditGeoNoteSegue" {
+            var nextVC: EditGeoNoteViewController = segue.destinationViewController as EditGeoNoteViewController
+            
+            nextVC.noteId = noteId
+            nextVC.noteTitle = noteTitle
+            nextVC.noteText = noteData
+            nextVC.existingNote = selectedNote
+            
+            nextVC.delegate = self
+        }
+    }
+    
+    func userDidUpdateNote(_noteTitle: NSString, _noteText: NSString) {
+        println("note updated")
+        
+        navBar.topItem?.title = _noteTitle
+        noteText.text = _noteText
+        
+        noteTitle = _noteTitle
+        noteData = _noteText
     }
 }

@@ -238,6 +238,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     
     //Delegate method that gets the note data from modal view
     func userDidEnterNote(noteText: NSString) {
+        println("note entered")
         txtNote.text = noteText
     }
     

@@ -19,6 +19,7 @@
 		207C24861A5A272300FB9C52 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207C24851A5A272300FB9C52 /* CustomAnnotation.swift */; };
 		2086C43B1A4BD2DF00DE2553 /* ViewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2086C43A1A4BD2DF00DE2553 /* ViewNoteViewController.swift */; };
 		209D71511A49575200CD9015 /* EditNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D71501A49575200CD9015 /* EditNoteViewController.swift */; };
+		20E518781A6E2C40009C917C /* EditGeoNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E518771A6E2C40009C917C /* EditGeoNoteViewController.swift */; };
 		20ED9F6A1A440F2B00BD2CDD /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ED9F691A440F2B00BD2CDD /* HomeScreenViewController.swift */; };
 		20ED9F6C1A44251B00BD2CDD /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ED9F6B1A44251B00BD2CDD /* AddNoteViewController.swift */; };
 /* End PBXBuildFile section */
@@ -50,6 +51,7 @@
 		207C24851A5A272300FB9C52 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		2086C43A1A4BD2DF00DE2553 /* ViewNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewNoteViewController.swift; sourceTree = "<group>"; };
 		209D71501A49575200CD9015 /* EditNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNoteViewController.swift; sourceTree = "<group>"; };
+		20E518771A6E2C40009C917C /* EditGeoNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGeoNoteViewController.swift; sourceTree = "<group>"; };
 		20ED9F691A440F2B00BD2CDD /* HomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		20ED9F6B1A44251B00BD2CDD /* AddNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,6 +110,7 @@
 				2086C43A1A4BD2DF00DE2553 /* ViewNoteViewController.swift */,
 				20654F5B1A4D28D300C24102 /* Notes.swift */,
 				207C24851A5A272300FB9C52 /* CustomAnnotation.swift */,
+				20E518771A6E2C40009C917C /* EditGeoNoteViewController.swift */,
 			);
 			path = LocciDev;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20E518781A6E2C40009C917C /* EditGeoNoteViewController.swift in Sources */,
 				201D09381A42CAA30022B967 /* ViewController.swift in Sources */,
 				2086C43B1A4BD2DF00DE2553 /* ViewNoteViewController.swift in Sources */,
 				207C24861A5A272300FB9C52 /* CustomAnnotation.swift in Sources */,
