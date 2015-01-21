@@ -29,6 +29,7 @@ class EditNoteViewController: UIViewController {
         btnDone.layer.cornerRadius = 15.0
         
         txtNote.text = currentNote
+        self.txtNote.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {

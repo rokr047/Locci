@@ -46,6 +46,22 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //GUI stuff
+        btnSave.layer.cornerRadius = 15.0
+        btnCancel.layer.cornerRadius = 15.0
+        txtNote.layer.cornerRadius = 15.0
+        
+        self.txtTitle.delegate = self
+        
+        // Initialize the animator
+        animator = UIDynamicAnimator(referenceView: view)
+        
+        // Create the dark background view and the alert view
+        fnCreateOverlay()
+        fnCreateAlert()
+        
+        //Check if the app can use location data
 
         //Set up Location Manager
         locationManager = CLLocationManager()
@@ -59,20 +75,10 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         mapView.showsUserLocation = true
         mapView.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
         
-        btnSave.layer.cornerRadius = 15.0
-        btnCancel.layer.cornerRadius = 15.0
-        
-        txtNote.layer.cornerRadius = 15.0
-        
         var tapGesture = UITapGestureRecognizer(target: self, action: Selector("fnHandleTapGestureOnTextNote:"))
         txtNote.addGestureRecognizer(tapGesture)
         
-        // Initialize the animator
-        animator = UIDynamicAnimator(referenceView: view)
         
-        // Create the dark background view and the alert view
-        fnCreateOverlay()
-        fnCreateAlert()
     }
     
     func fnHandleTapGestureOnTextNote(tapGesture: UITapGestureRecognizer) {
@@ -240,6 +246,11 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     func userDidEnterNote(noteText: NSString) {
         println("note entered")
         txtNote.text = noteText
+    }
+    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        self.view.endEditing(true);
+        return false;
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {

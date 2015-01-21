@@ -80,9 +80,9 @@ class ViewController: UIViewController {
             
             btnContinue.alpha = 0.0
             
-            lblOne.text = "Placed my order of glasses. Receipt #123456789"
-            lblTwo.text = "Milk, Bread, Ice Cream & Cereal - Always"
-            lblThree.text = "Talk to carl the next time I am here."
+            lblOne.text = "\"This is where Mike met Molly!\""
+            lblTwo.text = "\"Carlee's place.\""
+            lblThree.text = "Share your notes via text/email/social media."
             
             btnContinue.setTitle("start", forState: UIControlState.Normal)
             

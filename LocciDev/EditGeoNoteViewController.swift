@@ -13,7 +13,7 @@ protocol NoteUpdatedDelegate {
     func userDidUpdateNote(_noteTitle: NSString, _noteText: NSString)
 }
 
-class EditGeoNoteViewController: UIViewController {
+class EditGeoNoteViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var txtNote: UITextView!
     @IBOutlet weak var txtTitle: UITextField!
@@ -37,6 +37,8 @@ class EditGeoNoteViewController: UIViewController {
             println("ERROR: invalid note id")
         }
         
+        self.txtTitle.delegate = self
+        
         txtTitle.text = noteTitle
         txtNote.text = noteText
     }
@@ -47,6 +49,11 @@ class EditGeoNoteViewController: UIViewController {
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
+    }
+    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        self.view.endEditing(true);
+        return false;
     }
     
     @IBAction func CancelEdit(sender: AnyObject) {

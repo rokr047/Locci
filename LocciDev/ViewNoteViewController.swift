@@ -127,4 +127,14 @@ class ViewNoteViewController: UIViewController, MKMapViewDelegate, NoteUpdatedDe
         noteTitle = _noteTitle
         noteData = _noteText
     }
+    
+    @IBAction func OpenNoteInMaps(sender: AnyObject) {
+        
+        let noteCoordinate = CLLocationCoordinate2DMake(latitude, longitude)
+        var notePlacemark = MKPlacemark(coordinate: noteCoordinate, addressDictionary: nil)
+        var noteItemOnMap = MKMapItem(placemark: notePlacemark)
+        
+        noteItemOnMap.name = noteTitle
+        noteItemOnMap.openInMapsWithLaunchOptions(nil)
+    }
 }
