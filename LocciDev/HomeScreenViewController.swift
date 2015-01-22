@@ -146,4 +146,31 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
             nextVC.selectedNote = selectedNote
         }
     }
+    
+    @IBAction func ShareCurrentLocation(sender: AnyObject) {
+         var alertController = UIAlertController(title: "You are Here", message: "1143 W 28th St,\nLos Angeles,\nCA - 90007.\nLatitude: 22.345\nLongitude: 118.342\nAltitude: 14.235", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        var okAction = UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil)
+        
+        var shareAction = UIAlertAction(title: "share", style: UIAlertActionStyle.Default) {
+            UIAlertAction in
+            println("launching share options...")
+            
+            let textToShare = "I am here : 1143 W 28th St,\nLos Angeles,\nCA - 90007.\nLatitude: 22.345\nLongitude: 118.342\nAltitude: 14.235\nsent via #Locci"
+            
+            let objectsToShare = [textToShare]
+            
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            
+            //New Excluded Activities Code
+            activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList, UIActivityTypeSaveToCameraRoll]
+            
+            self.presentViewController(activityVC, animated: true, completion: nil)
+        }
+        
+        alertController.addAction(okAction)
+        alertController.addAction(shareAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
 }
