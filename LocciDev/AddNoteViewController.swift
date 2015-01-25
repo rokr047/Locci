@@ -48,9 +48,9 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         super.viewDidLoad()
         
         //GUI stuff
-        btnSave.layer.cornerRadius = 15.0
-        btnCancel.layer.cornerRadius = 15.0
-        txtNote.layer.cornerRadius = 15.0
+        //btnSave.layer.cornerRadius = 15.0
+        //btnCancel.layer.cornerRadius = 15.0
+        //txtNote.layer.cornerRadius = 15.0
         
         self.txtTitle.delegate = self
         
@@ -284,7 +284,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
             isMissingEntry = true
         }
         
-        if  txtNote.text.isEmpty || txtNote.text.compare("click here to enter your note", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) == NSComparisonResult.OrderedSame {
+        if  txtNote.text.isEmpty || txtNote.text.compare("touch here to enter your note", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) == NSComparisonResult.OrderedSame {
             if !aText.isEmpty {
                 aText = aText + " and "
             }

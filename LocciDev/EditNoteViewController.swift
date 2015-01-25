@@ -25,8 +25,8 @@ class EditNoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        txtNote.layer.cornerRadius = 15.0
-        btnDone.layer.cornerRadius = 15.0
+        //txtNote.layer.cornerRadius = 15.0
+        //btnDone.layer.cornerRadius = 15.0
         
         txtNote.text = currentNote
         self.txtNote.becomeFirstResponder()
