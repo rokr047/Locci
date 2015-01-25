@@ -273,8 +273,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
             }
         }
     }
-    
-    @IBAction func AddNote(sender: UIButton) {        
+    @IBAction func CreateNote(sender: AnyObject) {
         //Show alerts messages for incorrect or missing data
         var aText = ""
         var isMissingEntry = false
@@ -323,6 +322,10 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         
         //Go back to home screen
         navigationController?.popViewControllerAnimated(true)
+    }
+    
+    @IBAction func AddNote(sender: UIButton) {        
+        //Dummy Code. Needs to be removed.
     }
     
     @IBAction func CancelNote(sender: AnyObject) {
