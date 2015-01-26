@@ -207,16 +207,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Remember to get milk from here next time. Also the loyalty card number is 123456789" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6EV-hT-fF2">
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" text="Remember to get milk from here next time. Also the loyalty card number is 123456789" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6EV-hT-fF2">
                                 <rect key="frame" x="0.0" y="307" width="320" height="210"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <mapView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" showsUserLocation="YES" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smS-gL-aBV">
+                            <mapView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" showsUserLocation="YES" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smS-gL-aBV">
                                 <rect key="frame" x="0.0" y="63" width="320" height="242"/>
                             </mapView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3E-Jr-MLa">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3E-Jr-MLa">
                                 <rect key="frame" x="0.0" y="19" width="320" height="44"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="barTintColor" red="0.16504854368932037" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
@@ -250,9 +250,12 @@
                                     <segue destination="Hwb-B4-jUw" kind="push" identifier="EditGeoNoteSegue" id="vGg-bO-IAG"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7S-AG-4W1">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7S-AG-4W1">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <color key="backgroundColor" red="0.31764705882352939" green="0.55686274509803924" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="gOX-Vl-lHl"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
                                 <state key="normal" title="Open in Maps">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -264,6 +267,23 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.16504854368932037" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="d3E-Jr-MLa" secondAttribute="trailing" constant="-16" id="0W5-MV-3XG"/>
+                            <constraint firstItem="z7S-AG-4W1" firstAttribute="top" secondItem="6EV-hT-fF2" secondAttribute="bottom" constant="1" id="CUD-fk-Jbq"/>
+                            <constraint firstItem="d3E-Jr-MLa" firstAttribute="leading" secondItem="ouk-PY-TMz" secondAttribute="leadingMargin" constant="-16" id="GUJ-mJ-ymD"/>
+                            <constraint firstItem="z7S-AG-4W1" firstAttribute="top" secondItem="6EV-hT-fF2" secondAttribute="bottom" constant="1" id="Kux-mt-bAt"/>
+                            <constraint firstItem="z7S-AG-4W1" firstAttribute="leading" secondItem="ouk-PY-TMz" secondAttribute="leadingMargin" constant="-16" id="TXl-Fb-nbM"/>
+                            <constraint firstItem="smS-gL-aBV" firstAttribute="top" secondItem="d3E-Jr-MLa" secondAttribute="bottom" id="Uqg-aE-MIl"/>
+                            <constraint firstItem="NBm-gg-8oi" firstAttribute="top" secondItem="z7S-AG-4W1" secondAttribute="bottom" id="cXy-ju-UMT"/>
+                            <constraint firstItem="6EV-hT-fF2" firstAttribute="top" secondItem="smS-gL-aBV" secondAttribute="bottom" constant="2" id="dgU-tY-aOK"/>
+                            <constraint firstItem="z7S-AG-4W1" firstAttribute="top" secondItem="6EV-hT-fF2" secondAttribute="bottom" constant="1" id="iDi-5N-TxQ"/>
+                            <constraint firstItem="d3E-Jr-MLa" firstAttribute="top" secondItem="ouk-PY-TMz" secondAttribute="topMargin" constant="19" id="mTZ-Tz-DTU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6EV-hT-fF2" secondAttribute="trailing" constant="-16" id="nGa-hc-fcq"/>
+                            <constraint firstItem="smS-gL-aBV" firstAttribute="leading" secondItem="ouk-PY-TMz" secondAttribute="leadingMargin" constant="-16" id="ngu-3T-L25"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="z7S-AG-4W1" secondAttribute="trailing" constant="-16" id="qGL-uh-ACk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="smS-gL-aBV" secondAttribute="trailing" constant="-16" id="xpu-Cp-Q0c"/>
+                            <constraint firstItem="6EV-hT-fF2" firstAttribute="leading" secondItem="ouk-PY-TMz" secondAttribute="leadingMargin" constant="-16" id="y5I-dW-2O4"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bFP-5T-eZs"/>
                     <connections>
