@@ -450,74 +450,75 @@
                                     <action selector="AddNote:" destination="HyJ-nM-uys" eventType="touchUpInside" id="yRX-gN-AnP"/>
                                 </connections>
                             </button>
-                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJc-hu-J1P">
-                                <rect key="frame" x="0.0" y="18" width="320" height="44"/>
-                                <color key="barTintColor" red="0.14901960784313725" green="0.45490196078431372" blue="0.44705882352941179" alpha="1" colorSpace="calibratedRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="25"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="New Note" id="ZKk-hp-LzZ">
-                                        <barButtonItem key="backBarButtonItem" title="Cancel" id="7ny-qq-nk0"/>
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="cdm-yJ-ZMP">
-                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <connections>
-                                                <action selector="CancelNote:" destination="HyJ-nM-uys" id="Lxc-jN-pBW"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="xHX-vg-cXh">
-                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <connections>
-                                                <action selector="CreateNote:" destination="HyJ-nM-uys" id="MVb-Wg-m5O"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gxA-Uc-kix">
-                                <rect key="frame" x="0.0" y="62" width="320" height="506"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxA-Uc-kix">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5W6-WP-Ufc">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="188"/>
+                                        <rect key="frame" x="0.0" y="42" width="320" height="188"/>
                                     </mapView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="latitude , longitude" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYY-Up-6M8">
-                                        <rect key="frame" x="16" y="167" width="288" height="21"/>
+                                        <rect key="frame" x="16" y="209" width="288" height="21"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="12"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="loading location information..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UW-w2-uCI">
-                                        <rect key="frame" x="16" y="196" width="288" height="30"/>
+                                        <rect key="frame" x="16" y="238" width="288" height="30"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="10"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OzZ-Nt-Cdf">
-                                        <rect key="frame" x="16" y="234" width="288" height="30"/>
+                                        <rect key="frame" x="16" y="276" width="288" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" text="click here to enter your note" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1Dl-ua-wpu">
-                                        <rect key="frame" x="16" y="272" width="288" height="225"/>
+                                        <rect key="frame" x="16" y="314" width="288" height="225"/>
                                         <color key="backgroundColor" white="0.96988075659999995" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJc-hu-J1P">
+                                        <rect key="frame" x="0.0" y="-2" width="320" height="44"/>
+                                        <color key="barTintColor" red="0.14901960784313725" green="0.45490196078431372" blue="0.44705882352941179" alpha="1" colorSpace="calibratedRGB"/>
+                                        <textAttributes key="titleTextAttributes">
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="25"/>
+                                        </textAttributes>
+                                        <items>
+                                            <navigationItem title="New Note" id="ZKk-hp-LzZ">
+                                                <barButtonItem key="backBarButtonItem" title="Cancel" id="7ny-qq-nk0"/>
+                                                <barButtonItem key="leftBarButtonItem" title="Cancel" id="cdm-yJ-ZMP">
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="CancelNote:" destination="HyJ-nM-uys" id="Lxc-jN-pBW"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                                <barButtonItem key="rightBarButtonItem" systemItem="save" id="xHX-vg-cXh">
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="CreateNote:" destination="HyJ-nM-uys" id="MVb-Wg-m5O"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                            </navigationItem>
+                                        </items>
+                                    </navigationBar>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="5W6-WP-Ufc" firstAttribute="top" secondItem="ZJc-hu-J1P" secondAttribute="bottom" id="83p-Md-tqM"/>
                                     <constraint firstAttribute="trailing" secondItem="1Dl-ua-wpu" secondAttribute="trailing" constant="16" id="DWQ-xt-69l"/>
+                                    <constraint firstItem="ZJc-hu-J1P" firstAttribute="leading" secondItem="gxA-Uc-kix" secondAttribute="leading" id="FdA-iU-rza"/>
                                     <constraint firstItem="1UW-w2-uCI" firstAttribute="top" secondItem="5W6-WP-Ufc" secondAttribute="bottom" constant="8" id="G1a-19-XBC"/>
                                     <constraint firstItem="OzZ-Nt-Cdf" firstAttribute="top" secondItem="1UW-w2-uCI" secondAttribute="bottom" constant="8" id="Iuv-Sl-aaZ"/>
-                                    <constraint firstItem="5W6-WP-Ufc" firstAttribute="top" secondItem="gxA-Uc-kix" secondAttribute="top" id="Jkx-sF-eFN"/>
+                                    <constraint firstItem="ZJc-hu-J1P" firstAttribute="top" secondItem="gxA-Uc-kix" secondAttribute="top" constant="-2" id="J15-kj-fI3"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZJc-hu-J1P" secondAttribute="trailing" id="Mc9-cu-Pji"/>
                                     <constraint firstAttribute="trailing" secondItem="IYY-Up-6M8" secondAttribute="trailing" constant="16" id="N5m-Wy-mpo"/>
-                                    <constraint firstItem="IYY-Up-6M8" firstAttribute="top" secondItem="5W6-WP-Ufc" secondAttribute="bottom" constant="-21" id="Ned-wD-cgf"/>
-                                    <constraint firstItem="1UW-w2-uCI" firstAttribute="top" secondItem="IYY-Up-6M8" secondAttribute="bottom" constant="8" id="NoZ-2U-3sI"/>
                                     <constraint firstAttribute="trailing" secondItem="OzZ-Nt-Cdf" secondAttribute="trailing" constant="16" id="Sxb-FM-AHI"/>
                                     <constraint firstItem="1Dl-ua-wpu" firstAttribute="top" secondItem="OzZ-Nt-Cdf" secondAttribute="bottom" constant="8" id="VAA-Qf-D1S"/>
                                     <constraint firstItem="5W6-WP-Ufc" firstAttribute="leading" secondItem="gxA-Uc-kix" secondAttribute="leading" id="Z0Q-Zz-jCC"/>
-                                    <constraint firstItem="OzZ-Nt-Cdf" firstAttribute="top" secondItem="1UW-w2-uCI" secondAttribute="bottom" constant="8" id="ZfE-Ga-S3J"/>
                                     <constraint firstItem="1UW-w2-uCI" firstAttribute="leading" secondItem="gxA-Uc-kix" secondAttribute="leading" constant="16" id="ctG-fH-Hhf"/>
+                                    <constraint firstAttribute="bottom" secondItem="1Dl-ua-wpu" secondAttribute="bottom" constant="9" id="kJP-I7-1jo"/>
                                     <constraint firstItem="1Dl-ua-wpu" firstAttribute="leading" secondItem="gxA-Uc-kix" secondAttribute="leading" constant="16" id="qKB-vs-z5F"/>
                                     <constraint firstAttribute="trailing" secondItem="1UW-w2-uCI" secondAttribute="trailing" constant="16" id="qiG-gA-Wb9"/>
                                     <constraint firstItem="1Dl-ua-wpu" firstAttribute="top" secondItem="OzZ-Nt-Cdf" secondAttribute="bottom" constant="8" id="r07-iL-0VL"/>
@@ -530,13 +531,9 @@
                         <color key="backgroundColor" red="0.14901960784313725" green="0.45490196078431372" blue="0.44705882352941179" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="gxA-Uc-kix" secondAttribute="trailing" constant="-16" id="5Ig-38-rdt"/>
-                            <constraint firstItem="ZJc-hu-J1P" firstAttribute="leading" secondItem="DZA-aB-asN" secondAttribute="leadingMargin" constant="-16" id="Rc8-Gg-3P3"/>
-                            <constraint firstItem="gxA-Uc-kix" firstAttribute="top" secondItem="ZJc-hu-J1P" secondAttribute="bottom" id="bhm-6I-Nc0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gxA-Uc-kix" secondAttribute="trailing" constant="-16" id="fCO-GV-ZT6"/>
                             <constraint firstItem="KrO-xk-mcw" firstAttribute="top" secondItem="gxA-Uc-kix" secondAttribute="bottom" id="fLq-qE-IJR"/>
+                            <constraint firstItem="gxA-Uc-kix" firstAttribute="top" secondItem="aOY-9z-3Hs" secondAttribute="bottom" id="k5M-LE-ZDv"/>
                             <constraint firstItem="gxA-Uc-kix" firstAttribute="leading" secondItem="DZA-aB-asN" secondAttribute="leadingMargin" constant="-16" id="vLV-Lt-WeB"/>
-                            <constraint firstItem="gxA-Uc-kix" firstAttribute="leading" secondItem="DZA-aB-asN" secondAttribute="leadingMargin" constant="-16" id="vgy-sw-WMu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZJc-hu-J1P" secondAttribute="trailing" constant="-16" id="zUH-zc-Gap"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mCI-yw-6nS"/>
@@ -566,13 +563,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="nOY-SO-dQh">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="nOY-SO-dQh">
                                 <rect key="frame" x="16" y="26" width="288" height="213"/>
                                 <color key="backgroundColor" white="0.96988075659999995" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES6-QD-Txi">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES6-QD-Txi">
                                 <rect key="frame" x="64" y="247" width="192" height="52"/>
                                 <color key="backgroundColor" red="0.17632916709999999" green="0.32800662879999998" blue="0.26560676700000002" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -595,6 +592,7 @@
                             <constraint firstItem="nOY-SO-dQh" firstAttribute="leading" secondItem="0G3-LV-FUR" secondAttribute="leadingMargin" id="0lJ-xu-xjR"/>
                             <constraint firstItem="ES6-QD-Txi" firstAttribute="top" secondItem="nOY-SO-dQh" secondAttribute="bottom" constant="8" id="1Hi-iI-HMU"/>
                             <constraint firstItem="ES6-QD-Txi" firstAttribute="leading" secondItem="0G3-LV-FUR" secondAttribute="leadingMargin" constant="48" id="7OA-qj-wCz"/>
+                            <constraint firstItem="64T-JA-2Ge" firstAttribute="top" secondItem="ES6-QD-Txi" secondAttribute="bottom" constant="269" id="ZsB-TD-UOh"/>
                             <constraint firstItem="nOY-SO-dQh" firstAttribute="top" secondItem="EvS-BJ-fAb" secondAttribute="bottom" constant="6" id="nEY-OQ-XW7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ES6-QD-Txi" secondAttribute="trailing" constant="48" id="oYo-Fi-mfS"/>
                             <constraint firstItem="nOY-SO-dQh" firstAttribute="trailing" secondItem="0G3-LV-FUR" secondAttribute="trailingMargin" id="vak-nM-8mJ"/>
@@ -607,7 +605,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YZW-Di-fYl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1646" y="390"/>
+            <point key="canvasLocation" x="1676" y="390"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="99R-pl-KGb">
