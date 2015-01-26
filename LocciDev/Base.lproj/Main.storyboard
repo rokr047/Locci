@@ -308,50 +308,89 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tAm-1j-qqf">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P5W-ah-8BP">
+                                <rect key="frame" x="0.0" y="62" width="320" height="506"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bhu-QU-PlG">
+                                        <rect key="frame" x="8" y="8" width="304" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, s" translatesAutoresizingMaskIntoConstraints="NO" id="dj0-mQ-ClT">
+                                        <rect key="frame" x="8" y="49" width="304" height="185"/>
+                                        <color key="backgroundColor" white="0.96988075659999995" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <navigationBar hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tAm-1j-qqf">
+                                        <rect key="frame" x="0.0" y="200" width="320" height="44"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="barTintColor" red="0.13725490196078433" green="0.43137254901960786" blue="0.42352941176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                        <textAttributes key="titleTextAttributes">
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="25"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </textAttributes>
+                                        <items>
+                                            <navigationItem title="Edit Note" id="VKr-NS-iyp">
+                                                <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="xDa-sB-nes">
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <connections>
+                                                        <action selector="CancelEdit:" destination="Hwb-B4-jUw" id="sK2-ZT-nRa"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                                <barButtonItem key="rightBarButtonItem" systemItem="save" id="utN-hR-WMK">
+                                                    <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="SaveEdit:" destination="Hwb-B4-jUw" id="Lh1-s9-ybq"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                            </navigationItem>
+                                        </items>
+                                    </navigationBar>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Bhu-QU-PlG" secondAttribute="trailing" constant="8" id="51D-1T-r99"/>
+                                    <constraint firstItem="dj0-mQ-ClT" firstAttribute="leading" secondItem="P5W-ah-8BP" secondAttribute="leading" constant="8" id="5Ca-hL-faa"/>
+                                    <constraint firstAttribute="bottom" secondItem="dj0-mQ-ClT" secondAttribute="bottom" constant="272" id="7dx-FB-oXS"/>
+                                    <constraint firstItem="Bhu-QU-PlG" firstAttribute="leading" secondItem="P5W-ah-8BP" secondAttribute="leading" constant="8" id="CtI-7j-i7a"/>
+                                    <constraint firstItem="dj0-mQ-ClT" firstAttribute="top" secondItem="Bhu-QU-PlG" secondAttribute="bottom" constant="11" id="Kqb-ew-yp9"/>
+                                    <constraint firstAttribute="trailing" secondItem="dj0-mQ-ClT" secondAttribute="trailing" constant="8" id="V1I-p7-pd5"/>
+                                    <constraint firstItem="Bhu-QU-PlG" firstAttribute="top" secondItem="P5W-ah-8BP" secondAttribute="top" constant="8" id="VAu-1C-57W"/>
+                                </constraints>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JkH-Eb-IyN">
                                 <rect key="frame" x="0.0" y="18" width="320" height="44"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.14901960780000001" green="0.4549019608" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="barTintColor" red="0.13725490196078433" green="0.43137254901960786" blue="0.42352941176470588" alpha="1" colorSpace="calibratedRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="25"/>
-                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </textAttributes>
                                 <items>
-                                    <navigationItem title="Edit Note" id="VKr-NS-iyp">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="xDa-sB-nes">
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <navigationItem title="Title" id="aPM-Ye-OUw">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Wyl-Bw-OBM">
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
-                                                <action selector="CancelEdit:" destination="Hwb-B4-jUw" id="sK2-ZT-nRa"/>
+                                                <action selector="CancelEdit:" destination="Hwb-B4-jUw" id="XWn-1g-gzW"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="utN-hR-WMK">
-                                            <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="vq2-ll-DwP">
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
-                                                <action selector="SaveEdit:" destination="Hwb-B4-jUw" id="Lh1-s9-ybq"/>
+                                                <action selector="SaveEdit:" destination="Hwb-B4-jUw" id="Fco-tY-wYt"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tf4-I9-LhL">
-                                <rect key="frame" x="0.0" y="62" width="320" height="506"/>
-                                <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bhu-QU-PlG">
-                                        <rect key="frame" x="8" y="8" width="304" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                    </textField>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, s" translatesAutoresizingMaskIntoConstraints="NO" id="dj0-mQ-ClT">
-                                        <rect key="frame" x="8" y="46" width="304" height="185"/>
-                                        <color key="backgroundColor" white="0.96988075659999995" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.13725490196078433" green="0.43137254901960786" blue="0.42352941176470588" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="JkH-Eb-IyN" secondAttribute="trailing" constant="-16" id="3ZM-1z-CaK"/>
+                            <constraint firstItem="JkH-Eb-IyN" firstAttribute="leading" secondItem="BKI-ym-GVX" secondAttribute="leadingMargin" constant="-16" id="Gd7-5B-kwn"/>
+                            <constraint firstItem="JkH-Eb-IyN" firstAttribute="top" secondItem="BKI-ym-GVX" secondAttribute="topMargin" constant="18" id="eTg-aP-AGo"/>
+                            <constraint firstItem="P5W-ah-8BP" firstAttribute="top" secondItem="JkH-Eb-IyN" secondAttribute="bottom" id="fqs-ol-KQb"/>
+                            <constraint firstItem="P5W-ah-8BP" firstAttribute="leading" secondItem="BKI-ym-GVX" secondAttribute="leadingMargin" constant="-16" id="iJu-jb-VaQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="P5W-ah-8BP" secondAttribute="trailing" constant="-16" id="wYG-L7-vik"/>
+                            <constraint firstItem="a1E-00-shj" firstAttribute="top" secondItem="P5W-ah-8BP" secondAttribute="bottom" id="yZj-87-pOu"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VQQ-Sf-Z2L"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -363,7 +402,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4v9-cU-c56" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1646" y="-271"/>
+            <point key="canvasLocation" x="1676" y="-271"/>
         </scene>
         <!--AddNoteViewController-->
         <scene sceneID="vN2-IZ-wjq">
@@ -426,7 +465,7 @@
                                                 <action selector="CancelNote:" destination="HyJ-nM-uys" id="Lxc-jN-pBW"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="xHX-vg-cXh">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="xHX-vg-cXh">
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="CreateNote:" destination="HyJ-nM-uys" id="MVb-Wg-m5O"/>
