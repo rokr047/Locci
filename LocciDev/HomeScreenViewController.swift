@@ -18,12 +18,41 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
     
     var tableData: Array<AnyObject> = []
     
+    //Location Information
+    var locInfo: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
+        
+        //Load location information... and cache it in locInfo.
+        switch CLLocationManager.authorizationStatus() {
+        case .Authorized, .AuthorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+        case .NotDetermined:
+            locationManager.requestAlwaysAuthorization()
+        case .Restricted, .Denied:
+            let alertController = UIAlertController(
+                title: "Location Access Disabled",
+                message: "In order to store notes & be notified about notes near you, please open this app's settings and set location access to 'Always'.",
+                preferredStyle: .Alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            
+            let openAction = UIAlertAction(title: "Open Settings", style: .Default) { (action) in
+                if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
+                    UIApplication.sharedApplication().openURL(url)
+                }
+            }
+            alertController.addAction(openAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            self.navigationController?.popViewControllerAnimated(false)
+        }
         
         notesTable.rowHeight = 50
         //notesTable.backgroundView = UIImageView(image: UIImage(named: "bg4"))
@@ -42,6 +71,11 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
         self.notesTable.reloadData()
         
         //println("found \(tableData.count) notes")
+        
+        if(!locInfo.isEmpty) {
+            println("Stopping location update")
+            self.locationManager.stopUpdatingLocation()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -148,15 +182,46 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
     }
     
     @IBAction func ShareCurrentLocation(sender: AnyObject) {
-         var alertController = UIAlertController(title: "You are Here", message: "1143 W 28th St,\nLos Angeles,\nCA - 90007.\nLatitude: 22.345\nLongitude: 118.342\nAltitude: 14.235", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        //Handle Disable of location data
+        switch CLLocationManager.authorizationStatus() {
+        case .Authorized, .AuthorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+        case .NotDetermined:
+            locationManager.requestAlwaysAuthorization()
+        case .Restricted, .Denied:
+            let alertController = UIAlertController(
+                title: "Location Access Disabled",
+                message: "In order to store notes & be notified about notes near you, please open this app's settings and set location access to 'Always'.",
+                preferredStyle: .Alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            
+            let openAction = UIAlertAction(title: "Open Settings", style: .Default) { (action) in
+                if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
+                    UIApplication.sharedApplication().openURL(url)
+                }
+            }
+            alertController.addAction(openAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            self.navigationController?.popViewControllerAnimated(false)
+        }
+        
+        while(self.locInfo.isEmpty || self.locInfo == "") {
+            //just running a loop to wait till locInfo is populated.
+        }
+        
+        var alertController = UIAlertController(title: "You are Here", message: locInfo, preferredStyle: UIAlertControllerStyle.Alert)
         
         var okAction = UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil)
         
         var shareAction = UIAlertAction(title: "share", style: UIAlertActionStyle.Default) {
             UIAlertAction in
-            println("launching share options...")
+            //println("launching share options...")
             
-            let textToShare = "I am here : 1143 W 28th St,\nLos Angeles,\nCA - 90007.\nLatitude: 22.345\nLongitude: 118.342\nAltitude: 14.235\nsent via #Locci"
+            let textToShare = "I am here : \(self.locInfo)\nsent via #Locci"
             
             let objectsToShare = [textToShare]
             
@@ -172,5 +237,45 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
         alertController.addAction(shareAction)
         
         self.presentViewController(alertController, animated: true, completion: nil)
+        
+        locationManager.stopUpdatingLocation()
+    }
+    
+    //Location Manager functions that gets back reverseGeoDecoded location data
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        println("Error while updating location " + error.localizedDescription)
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
+            
+            if (error != nil) {
+                println("Reverse geocoder failed with error" + error.localizedDescription)
+                return
+            }
+            
+            if placemarks.count > 0 {
+                let pm = placemarks[0] as CLPlacemark
+                self.displayLocationInfo(pm)
+            } else {
+                println("Problem with the data received from geocoder")
+            }
+        })
+    }
+    
+    func displayLocationInfo(placemark: CLPlacemark?) {
+        if let containsPlacemark = placemark {
+            var locationName = (containsPlacemark.name != nil) ? containsPlacemark.name : ""
+            locInfo = locationName
+            locInfo = (containsPlacemark.locality != nil) ? ("\(locInfo), \(containsPlacemark.locality)") : "\(locInfo)"
+            locInfo = (containsPlacemark.subAdministrativeArea != nil) ? ("\(locInfo), \(containsPlacemark.subAdministrativeArea)") : "\(locInfo)"
+            locInfo = (containsPlacemark.administrativeArea != nil) ? ("\(locInfo), \(containsPlacemark.administrativeArea)") : "\(locInfo)"
+            locInfo = (containsPlacemark.postalCode != nil) ? ("\(locInfo) \(containsPlacemark.postalCode)") : "\(locInfo)"
+            locInfo = (containsPlacemark.country != nil) ? ("\(locInfo), \(containsPlacemark.country)") : "\(locInfo)"
+            
+            let curLocation: CLLocation = containsPlacemark.location
+            locInfo = "\(locInfo) \nlat : \(curLocation.coordinate.latitude) \nlong : \(curLocation.coordinate.longitude)"
+        }
+        
     }
 }

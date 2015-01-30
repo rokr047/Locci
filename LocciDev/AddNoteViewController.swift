@@ -71,14 +71,14 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         
         //Handle Disable of location data
         switch CLLocationManager.authorizationStatus() {
-        case .Authorized:
+        case .Authorized, .AuthorizedWhenInUse:
             locationManager.startUpdatingLocation()
         case .NotDetermined:
             locationManager.requestAlwaysAuthorization()
-        case .AuthorizedWhenInUse, .Restricted, .Denied:
+        case .Restricted, .Denied:
             let alertController = UIAlertController(
-                title: "Background Location Access Disabled",
-                message: "In order to be notified about notes near you, please open this app's settings and set location access to 'Always'.",
+                title: "Location Access Disabled",
+                message: "In order to store notes & be notified about notes near you, please open this app's settings and set location access to 'Always'.",
                 preferredStyle: .Alert)
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
@@ -348,15 +348,22 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         
         //Go back to home screen
         navigationController?.popViewControllerAnimated(true)
+        
+        //make sure we are not consuming battery
+        locationManager.stopUpdatingLocation()
     }
     
     @IBAction func AddNote(sender: UIButton) {        
-        //Dummy Code. Needs to be removed.
+        //Dummy function. Needs to be removed.
     }
     
     @IBAction func CancelNote(sender: AnyObject) {
         
         println("note canceled")
+        
+        //make sure we are not consuming battery
+        locationManager.stopUpdatingLocation()
+        
         //Go back to home screen
         navigationController?.popViewControllerAnimated(true)
     }
