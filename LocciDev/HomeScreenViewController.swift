@@ -209,10 +209,6 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
             self.navigationController?.popViewControllerAnimated(false)
         }
         
-        while(self.locInfo.isEmpty || self.locInfo == "") {
-            //just running a loop to wait till locInfo is populated.
-        }
-        
         var alertController = UIAlertController(title: "You are Here", message: locInfo, preferredStyle: UIAlertControllerStyle.Alert)
         
         var okAction = UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil)
