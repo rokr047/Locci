@@ -23,9 +23,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Locci uses location data to tag notes and alert you when you approach a note. Your location data is never transmitted to any other entity.</string>
+	<string>Locci uses location data to alert you when you are near your note.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Locci uses location data to tag notes and alert you when you approach a note. Your location data is never transmitted to any other entity.</string>
+	<string>Locci uses your location to store notes for specific locations.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
