@@ -115,7 +115,7 @@
                                 <items>
                                     <navigationItem id="TFf-cV-o6M">
                                         <nil key="title"/>
-                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="e4Y-51-eTx">
+                                        <barButtonItem key="leftBarButtonItem" image="near_me-25" id="e4Y-51-eTx">
                                             <connections>
                                                 <action selector="ShareCurrentLocation:" destination="slT-Cu-Zzg" id="8wl-cb-xAh"/>
                                             </connections>
@@ -124,7 +124,7 @@
                                             <rect key="frame" x="119" y="7" width="83" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="35"/>
-                                            <state key="normal" title="Locci">
+                                            <state key="normal" title="locci">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
@@ -225,7 +225,7 @@
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Target Store" id="S0W-sv-io1">
+                                    <navigationItem title="note title" id="S0W-sv-io1">
                                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="k31-5Z-cHK">
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
@@ -363,8 +363,11 @@
                                 <rect key="frame" x="0.0" y="18" width="320" height="44"/>
                                 <color key="backgroundColor" red="0.14901960780000001" green="0.4549019608" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="barTintColor" red="0.13725490196078433" green="0.43137254901960786" blue="0.42352941176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="25"/>
+                                </textAttributes>
                                 <items>
-                                    <navigationItem title="Title" id="aPM-Ye-OUw">
+                                    <navigationItem title="edit note" id="aPM-Ye-OUw">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Wyl-Bw-OBM">
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
@@ -486,7 +489,7 @@
                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="25"/>
                                         </textAttributes>
                                         <items>
-                                            <navigationItem title="New Note" id="ZKk-hp-LzZ">
+                                            <navigationItem title="new note" id="ZKk-hp-LzZ">
                                                 <barButtonItem key="backBarButtonItem" title="Cancel" id="7ny-qq-nk0"/>
                                                 <barButtonItem key="leftBarButtonItem" title="Cancel" id="cdm-yJ-ZMP">
                                                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -630,6 +633,9 @@
             <point key="canvasLocation" x="45" y="390"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="near_me-25" width="25" height="25"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
