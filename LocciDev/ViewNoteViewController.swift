@@ -72,9 +72,7 @@ class ViewNoteViewController: UIViewController, MKMapViewDelegate, NoteUpdatedDe
     }
     
     func fnShareActionHandler (action:UIAlertAction!) -> Void {
-        println("launching share options...")
-        
-        let textToShare = "\(noteTitle).\n\(noteData).\nGet #Locci at rokr047.com/Locci"
+        let textToShare = "Hey check out my note @ \(locationName) : \(noteTitle).\n\(noteData). \nLat : \(latitude)\nLong : \(longitude).\nGet #Locci at rokr047.com/Locci"
         
         let objectsToShare = [textToShare]
             

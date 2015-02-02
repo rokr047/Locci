@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         btnContinue.layer.cornerRadius = 15.0
         
         lblOne.text = "Store notes based on location."
-        lblTwo.text = "Get notified when you are near your note."
+        lblTwo.text = "Share your notes via text/email/social media."
         //lblThree.text = "Share your notes with your friends via text, email or social media."
         
         lblThree.text = "Your notes are private and accessible only to you."
@@ -80,9 +80,9 @@ class ViewController: UIViewController {
             
             btnContinue.alpha = 0.0
             
-            lblOne.text = "\"This is where Mike met Molly!\""
-            lblTwo.text = "\"Carlee's place.\""
-            lblThree.text = "Share your notes via text/email/social media."
+            lblOne.text = "\"Claire's Daycare Center.\""
+            lblTwo.text = "\"DTLA Plaza.\nCar Parked on Floor 2, Lot B3.\""
+            lblThree.text = "\"Ran into Tommy Trojan. call him later today.\""
             
             btnContinue.setTitle("start", forState: UIControlState.Normal)
             
