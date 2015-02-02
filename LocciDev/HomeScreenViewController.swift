@@ -26,7 +26,6 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
         
         //Load location information... and cache it in locInfo.
         switch CLLocationManager.authorizationStatus() {
@@ -55,7 +54,6 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
         }
         
         notesTable.rowHeight = 50
-        //notesTable.backgroundView = UIImageView(image: UIImage(named: "bg4"))
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -69,13 +67,6 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
         tableData = context.executeFetchRequest(fRequest, error: nil)!
         
         self.notesTable.reloadData()
-        
-        //println("found \(tableData.count) notes")
-        
-        if(!locInfo.isEmpty) {
-            println("Stopping location update")
-            self.locationManager.stopUpdatingLocation()
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -209,6 +200,10 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
             self.navigationController?.popViewControllerAnimated(false)
         }
         
+        if(locInfo.isEmpty) {
+            locInfo = "Trying to get your exactly location... try again in a few seconds."
+        }
+        
         var alertController = UIAlertController(title: "You are Here", message: locInfo, preferredStyle: UIAlertControllerStyle.Alert)
         
         var okAction = UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil)
@@ -234,7 +229,8 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
         
         self.presentViewController(alertController, animated: true, completion: nil)
         
-        locationManager.stopUpdatingLocation()
+        //Do not stop updating location when the app is open.
+        //locationManager.stopUpdatingLocation()
     }
     
     //Location Manager functions that gets back reverseGeoDecoded location data

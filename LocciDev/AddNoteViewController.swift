@@ -309,7 +309,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
             isMissingEntry = true
         }
         
-        if  txtNote.text.isEmpty || txtNote.text.compare("touch here to enter your note", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) == NSComparisonResult.OrderedSame {
+        if  txtNote.text.isEmpty || txtNote.text.compare("click here to enter your note", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) == NSComparisonResult.OrderedSame {
             if !aText.isEmpty {
                 aText = aText + " and "
             }
@@ -318,7 +318,16 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         }
         
         if isMissingEntry {
-            fnShowAlert(aText)
+            //fnShowAlert(aText)
+            let alertController = UIAlertController(
+                title: "Missing Information",
+                message: aText,
+                preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+            alertController.addAction(okAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
             return
         }
         
@@ -344,7 +353,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         
         context.save(nil) //TODO NSErrorPointer error handling
         locationManager.stopUpdatingLocation()
-        println("note saved")
+        //println("note saved")
         
         //Go back to home screen
         navigationController?.popViewControllerAnimated(true)
