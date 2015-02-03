@@ -82,7 +82,7 @@ class ViewController: UIViewController {
             
             lblOne.text = "\"Claire's Daycare Center.\""
             lblTwo.text = "\"DTLA Plaza.\nCar Parked on Floor 2, Lot B3.\""
-            lblThree.text = "\"Ran into Tommy Trojan. call him later today.\""
+            lblThree.text = "\"LA Uncubed. Met Chad DePue, CTO of Whisper.\""
             
             btnContinue.setTitle("start", forState: UIControlState.Normal)
             

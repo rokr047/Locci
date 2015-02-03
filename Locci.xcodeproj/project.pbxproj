@@ -14,6 +14,7 @@
 		201D093D1A42CAA30022B967 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 201D093C1A42CAA30022B967 /* Images.xcassets */; };
 		201D09401A42CAA30022B967 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 201D093E1A42CAA30022B967 /* LaunchScreen.xib */; };
 		201D094C1A42CAA30022B967 /* LocciDevTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201D094B1A42CAA30022B967 /* LocciDevTests.swift */; };
+		204002B51A7F5F000092B835 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 204002B41A7F5F000092B835 /* MapKit.framework */; };
 		20654F5C1A4D28D300C24102 /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20654F5B1A4D28D300C24102 /* Notes.swift */; };
 		20654F5E1A4D52B400C24102 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20654F5D1A4D52B400C24102 /* CoreLocation.framework */; };
 		207C24861A5A272300FB9C52 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207C24851A5A272300FB9C52 /* CustomAnnotation.swift */; };
@@ -35,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		201D092D1A42CAA30022B967 /* LocciDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocciDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		201D092D1A42CAA30022B967 /* Locci.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Locci.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		201D09311A42CAA30022B967 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		201D09321A42CAA30022B967 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		201D09351A42CAA30022B967 /* LocciDev.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocciDev.xcdatamodel; sourceTree = "<group>"; };
@@ -46,6 +47,8 @@
 		201D09451A42CAA30022B967 /* LocciDevTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocciDevTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		201D094A1A42CAA30022B967 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		201D094B1A42CAA30022B967 /* LocciDevTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocciDevTests.swift; sourceTree = "<group>"; };
+		204002B41A7F5F000092B835 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		204002B61A7F5F310092B835 /* LocciDev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LocciDev.entitlements; sourceTree = "<group>"; };
 		20654F5B1A4D28D300C24102 /* Notes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
 		20654F5D1A4D52B400C24102 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		207C24851A5A272300FB9C52 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
@@ -61,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				204002B51A7F5F000092B835 /* MapKit.framework in Frameworks */,
 				20654F5E1A4D52B400C24102 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -78,6 +82,7 @@
 		201D09241A42CAA30022B967 = {
 			isa = PBXGroup;
 			children = (
+				204002B41A7F5F000092B835 /* MapKit.framework */,
 				20654F5D1A4D52B400C24102 /* CoreLocation.framework */,
 				201D092F1A42CAA30022B967 /* LocciDev */,
 				201D09481A42CAA30022B967 /* LocciDevTests */,
@@ -88,7 +93,7 @@
 		201D092E1A42CAA30022B967 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				201D092D1A42CAA30022B967 /* LocciDev.app */,
+				201D092D1A42CAA30022B967 /* Locci.app */,
 				201D09451A42CAA30022B967 /* LocciDevTests.xctest */,
 			);
 			name = Products;
@@ -97,6 +102,7 @@
 		201D092F1A42CAA30022B967 /* LocciDev */ = {
 			isa = PBXGroup;
 			children = (
+				204002B61A7F5F310092B835 /* LocciDev.entitlements */,
 				20ED9F691A440F2B00BD2CDD /* HomeScreenViewController.swift */,
 				201D09321A42CAA30022B967 /* AppDelegate.swift */,
 				201D09371A42CAA30022B967 /* ViewController.swift */,
@@ -157,7 +163,7 @@
 			);
 			name = LocciDev;
 			productName = LocciDev;
-			productReference = 201D092D1A42CAA30022B967 /* LocciDev.app */;
+			productReference = 201D092D1A42CAA30022B967 /* Locci.app */;
 			productType = "com.apple.product-type.application";
 		};
 		201D09441A42CAA30022B967 /* LocciDevTests */ = {
@@ -190,6 +196,14 @@
 					201D092C1A42CAA30022B967 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = 2SRPKL265J;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 					201D09441A42CAA30022B967 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -373,13 +387,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Karthikeyan Sreenivasan (2SRPKL265J)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Karthikeyan Sreenivasan (2SRPKL265J)";
 				INFOPLIST_FILE = LocciDev/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = LocciDev;
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = Locci;
+				PROVISIONING_PROFILE = "5e7f437a-37b0-4f3d-93a3-1516e792f015";
 			};
 			name = Debug;
 		};
@@ -387,13 +401,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Karthikeyan Sreenivasan (2SRPKL265J)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Karthikeyan Sreenivasan (2SRPKL265J)";
 				INFOPLIST_FILE = LocciDev/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = LocciDev;
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = Locci;
+				PROVISIONING_PROFILE = "5e7f437a-37b0-4f3d-93a3-1516e792f015";
 			};
 			name = Release;
 		};
