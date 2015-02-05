@@ -270,7 +270,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     
     //Delegate method that gets the note data from modal view
     func userDidEnterNote(noteText: NSString) {
-        println("note entered")
+        //println("note entered")
         txtNote.text = noteText
     }
     
@@ -322,6 +322,19 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
             let alertController = UIAlertController(
                 title: "Missing Information",
                 message: aText,
+                preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+            alertController.addAction(okAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            return
+        }
+        
+        if(locationName.isEmpty) {
+            let alertController = UIAlertController(
+                title: "Error Getting Location Data",
+                message: "Locci is unable to get the address of your current location. Please make sure you are connected to internet.",
                 preferredStyle: .Alert)
             
             let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)

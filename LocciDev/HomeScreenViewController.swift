@@ -200,11 +200,16 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
             self.navigationController?.popViewControllerAnimated(false)
         }
         
+        var showShareButton : Bool = true
+        var showLocInfo : String = locInfo
+        
         if(locInfo.isEmpty) {
-            locInfo = "Trying to get your exactly location... try again in a few seconds."
+            showLocInfo = "Trying to get your exactly location... make sure you are connected to internet for Locci to get your address."
+            
+            showShareButton = false
         }
         
-        var alertController = UIAlertController(title: "You are Here", message: locInfo, preferredStyle: UIAlertControllerStyle.Alert)
+        var alertController = UIAlertController(title: "You are Here", message: showLocInfo, preferredStyle: UIAlertControllerStyle.Alert)
         
         var okAction = UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil)
         
@@ -225,7 +230,10 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
         }
         
         alertController.addAction(okAction)
-        alertController.addAction(shareAction)
+        
+        if(showShareButton) {
+            alertController.addAction(shareAction)
+        }
         
         self.presentViewController(alertController, animated: true, completion: nil)
         

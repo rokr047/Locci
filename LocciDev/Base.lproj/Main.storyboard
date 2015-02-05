@@ -8,7 +8,7 @@
         <!--WelcomeViewController-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="vcWelcome" title="WelcomeViewController" id="vXZ-lx-hvc" customClass="ViewController" customModule="LocciDev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="vcWelcome" title="WelcomeViewController" id="vXZ-lx-hvc" customClass="ViewController" customModule="Locci" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PUs-dS-9Pw"/>
                         <viewControllerLayoutGuide type="bottom" id="S1p-a9-dxJ"/>
@@ -99,7 +99,7 @@
         <!--HomeScreenViewController-->
         <scene sceneID="Sdq-yb-VMd">
             <objects>
-                <viewController storyboardIdentifier="vcHomeScreen" title="HomeScreenViewController" id="slT-Cu-Zzg" customClass="HomeScreenViewController" customModule="LocciDev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="vcHomeScreen" title="HomeScreenViewController" id="slT-Cu-Zzg" customClass="HomeScreenViewController" customModule="Locci" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QEn-fy-fug"/>
                         <viewControllerLayoutGuide type="bottom" id="9xH-Hw-5af"/>
@@ -204,7 +204,7 @@
         <!--vcViewNote-->
         <scene sceneID="6ca-6Q-CQG">
             <objects>
-                <viewController storyboardIdentifier="vcViewNote" title="vcViewNote" id="fSG-ft-vCT" customClass="ViewNoteViewController" customModule="LocciDev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="vcViewNote" title="vcViewNote" id="fSG-ft-vCT" customClass="ViewNoteViewController" customModule="Locci" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NQH-L9-4ff"/>
                         <viewControllerLayoutGuide type="bottom" id="NBm-gg-8oi"/>
@@ -307,7 +307,7 @@
         <!--vcEditGeoNote-->
         <scene sceneID="cJg-RX-s2z">
             <objects>
-                <viewController storyboardIdentifier="vcEditGeoNote" title="vcEditGeoNote" id="Hwb-B4-jUw" customClass="EditGeoNoteViewController" customModule="LocciDev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="vcEditGeoNote" title="vcEditGeoNote" id="Hwb-B4-jUw" customClass="EditGeoNoteViewController" customModule="Locci" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eMo-V0-7jz"/>
                         <viewControllerLayoutGuide type="bottom" id="a1E-00-shj"/>
@@ -418,7 +418,7 @@
         <!--AddNoteViewController-->
         <scene sceneID="vN2-IZ-wjq">
             <objects>
-                <viewController storyboardIdentifier="vcAddNote" title="AddNoteViewController" id="HyJ-nM-uys" customClass="AddNoteViewController" customModule="LocciDev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="vcAddNote" title="AddNoteViewController" id="HyJ-nM-uys" customClass="AddNoteViewController" customModule="Locci" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aOY-9z-3Hs"/>
                         <viewControllerLayoutGuide type="bottom" id="KrO-xk-mcw"/>
@@ -568,7 +568,7 @@
         <!--EditNoteViewController-->
         <scene sceneID="Seh-br-EBN">
             <objects>
-                <viewController storyboardIdentifier="vcEditNote" title="EditNoteViewController" id="UmL-tC-s4n" customClass="EditNoteViewController" customModule="LocciDev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="vcEditNote" title="EditNoteViewController" id="UmL-tC-s4n" customClass="EditNoteViewController" customModule="Locci" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EvS-BJ-fAb"/>
                         <viewControllerLayoutGuide type="bottom" id="64T-JA-2Ge"/>
