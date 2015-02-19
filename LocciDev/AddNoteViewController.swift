@@ -309,6 +309,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
             isMissingEntry = true
         }
         
+        /* make note as optional as per Alpha feedback.
         if  txtNote.text.isEmpty || txtNote.text.compare("click here to enter your note", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) == NSComparisonResult.OrderedSame {
             if !aText.isEmpty {
                 aText = aText + " and "
@@ -316,7 +317,8 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
             aText = aText + "you have not entered your note yet."
             isMissingEntry = true
         }
-        
+        */
+
         if isMissingEntry {
             //fnShowAlert(aText)
             let alertController = UIAlertController(
