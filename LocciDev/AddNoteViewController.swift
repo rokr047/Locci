@@ -71,7 +71,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         
         //Handle Disable of location data
         switch CLLocationManager.authorizationStatus() {
-        case .Authorized, .AuthorizedWhenInUse:
+        case CLAuthorizationStatus.AuthorizedAlways, .AuthorizedWhenInUse:
             locationManager.startUpdatingLocation()
         case .NotDetermined:
             locationManager.requestAlwaysAuthorization()
@@ -320,7 +320,8 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         */
 
         if isMissingEntry {
-            //fnShowAlert(aText)
+            fnShowAlert(aText)
+            /*
             let alertController = UIAlertController(
                 title: "Missing Information",
                 message: aText,
@@ -330,6 +331,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
             alertController.addAction(okAction)
             
             self.presentViewController(alertController, animated: true, completion: nil)
+            */
             return
         }
         
@@ -361,7 +363,14 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         //var newNote = Notes(entity: _entity!, insertIntoManagedObjectContext: context)
         newNote.noteid = recordCount! + 0
         newNote.title = txtTitle.text
-        newNote.text = txtNote.text
+        
+        // If no note is entered, insert "" into noteText.
+        if  txtNote.text.isEmpty || txtNote.text.compare("click here to enter your note", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) == NSComparisonResult.OrderedSame {
+            newNote.text = ""
+        } else {
+            newNote.text = txtNote.text
+        }
+        
         newNote.latitude = curLatitude
         newNote.longitude = curLongitude
         newNote.locationname = locationName
@@ -383,7 +392,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     
     @IBAction func CancelNote(sender: AnyObject) {
         
-        println("note canceled")
+        //println("note canceled")
         
         //make sure we are not consuming battery
         locationManager.stopUpdatingLocation()

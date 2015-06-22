@@ -80,9 +80,9 @@ class ViewController: UIViewController {
             
             btnContinue.alpha = 0.0
             
-            lblOne.text = "\"Claire's Daycare Center.\""
-            lblTwo.text = "\"DTLA Plaza.\nCar Parked on Floor 2, Lot B3.\""
-            lblThree.text = "\"National Library.\nBook: Mystries of Murder\nPage: 163 Aisle: 4 Row: 3\""
+            lblOne.text = "\"Lindsey's apartment.\""
+            lblTwo.text = "\"Car Parked Here.\nDTLA Plaza, Floor 2, Lot B3.\""
+            lblThree.text = "\"National Library.\nBook: Mystries of the Mountains\nPage: 163 Aisle: 4 Row: 3\""
             
             btnContinue.setTitle("start", forState: UIControlState.Normal)
             
@@ -114,9 +114,9 @@ class ViewController: UIViewController {
             newNote.locationname = "everywhere"
             
             context.save(nil) //TODO NSErrorPointer error handling
-            println("sample note saved")
+            //println("sample note saved")
             
-            println("Launch Home Screen : Button")
+            //println("Launch Home Screen : Button")
             let vcHomeScreen = self.storyboard?.instantiateViewControllerWithIdentifier("vcHomeScreen") as HomeScreenViewController
             
             self.navigationController?.pushViewController(vcHomeScreen, animated: true)

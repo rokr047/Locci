@@ -58,10 +58,10 @@ class ViewNoteViewController: UIViewController, MKMapViewDelegate, NoteUpdatedDe
         
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-        let shareAction = UIAlertAction(title: "share", style: UIAlertActionStyle.Default, handler: fnShareActionHandler)
-        let editAction = UIAlertAction(title: "edit", style: UIAlertActionStyle.Default, handler: fnEditActionHandler)
-        let deleteAction = UIAlertAction(title: "delete", style: UIAlertActionStyle.Destructive, handler: fnDeleteActionHandler)
-        let cancelAction = UIAlertAction(title: "cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+        let shareAction = UIAlertAction(title: "Share", style: UIAlertActionStyle.Default, handler: fnShareActionHandler)
+        let editAction = UIAlertAction(title: "Edit", style: UIAlertActionStyle.Default, handler: fnEditActionHandler)
+        let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.Destructive, handler: fnDeleteActionHandler)
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
         
         actionSheet.addAction(shareAction)
         actionSheet.addAction(editAction)
@@ -117,7 +117,7 @@ class ViewNoteViewController: UIViewController, MKMapViewDelegate, NoteUpdatedDe
     }
     
     func userDidUpdateNote(_noteTitle: NSString, _noteText: NSString) {
-        println("note updated")
+        //println("note updated")
         
         navBar.topItem?.title = _noteTitle
         noteText.text = _noteText

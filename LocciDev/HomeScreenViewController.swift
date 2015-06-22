@@ -29,7 +29,7 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
         
         //Load location information... and cache it in locInfo.
         switch CLLocationManager.authorizationStatus() {
-        case .Authorized, .AuthorizedWhenInUse:
+        case .AuthorizedAlways, .AuthorizedWhenInUse:
             locationManager.startUpdatingLocation()
         case .NotDetermined:
             locationManager.requestAlwaysAuthorization()
@@ -176,7 +176,7 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
         
         //Handle Disable of location data
         switch CLLocationManager.authorizationStatus() {
-        case .Authorized, .AuthorizedWhenInUse:
+        case .AuthorizedAlways, .AuthorizedWhenInUse:
             locationManager.startUpdatingLocation()
         case .NotDetermined:
             locationManager.requestAlwaysAuthorization()
