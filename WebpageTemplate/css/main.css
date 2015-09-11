@@ -1,0 +1,841 @@
+/* ==========================================================================
+   Table of Contents
+   ========================================================================== 
+   
+	00. Reset Defaults
+	01. Main Theme Colours   
+	02. Logo
+	03. Header Container
+	04. Typography
+	05. Store List
+	06. LayOut
+	07. Slider
+	08. Footer
+	09. Lip Ups
+	10. Insert Author's custom styles 
+	11. Media Queries 1140px
+	12. Media Queries 768px
+	13. Media Queries 480px
+	14. Media Queries 320px
+	15. Helper classes
+	16. Fonts
+	17. Print Styles 
+   
+   
+   ========================================================================== */
+   
+   
+ 
+ 
+
+/* ==========================================================================
+   00. Reset Defaults
+   ========================================================================== */ 
+
+html, button, input, select, textarea { color: #222; }
+body { font-size: 1em; line-height: 1.4; }
+::-moz-selection { background: #b3d4fc; text-shadow: none; }
+::selection { background: #b3d4fc; text-shadow: none; }
+.chromeframe { margin: 0.2em 0; background: #ccc; color: #000; padding: 0.2em 0;}
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+img { vertical-align: middle; }
+a{ text-decoration: none; }
+body {font: 16px/26px 'RobotoLight';}
+.wrapper { width: 1026px; /* 1140px - 10% for margins */ margin: 0 auto;  }
+
+
+
+/* ==========================================================================
+   01. Main Theme Styles
+   ========================================================================== */
+
+/* Header Container Text */
+.header-container {
+    color: #747a83;  
+}
+
+/* Header Heading Container Text */
+.header-container h3{
+	color: #242d32;
+}
+
+/* Main Container Background Colour */
+.main-container, .quote-container .lipup:before, .quote-container .lipup:after{
+	background: #fff;
+	color: #6a727c;
+}
+
+/* Quote Container Background Colour */
+.quote-container, .footer-container .lipup:before, .footer-container .lipup:after, .quote-container .lipup{
+	background: #f3f3f3;
+}
+
+/* Footer Container Background Colour */
+.footer-container, .footer-container .lipup {
+	background: #242d32;
+	color: #a7b3b9;
+}
+
+/* Feature Colour */
+cite, .footer-container li a:hover{
+	color: #0ca2d9;
+}
+
+/* Main Container Headings Colour */
+.main-container h2{
+	color: #303337;
+}
+
+/* Footer Container Links */
+.footer-container li a{
+	color: #aabdcd;
+}
+
+/* Footer Container Links Hover */
+.footer-container li a:hover{
+	color: #fbfdff;
+}
+/* Social Link Colour */
+ul.social-link a{
+	color: #4e6069;
+}
+
+/* Footer Headings */
+.footer-container footer h1{
+	color: #fff;
+}
+	
+
+
+/* ==========================================================================
+   02. LOGO
+   ========================================================================== */
+.header-container .logo{
+	position: relative;
+	width: 40%; /* Adjust Width for Logo if needed */
+	margin: 0 auto 3em;
+}
+
+
+
+
+/* ==========================================================================
+   03. Header Container
+   ========================================================================== */
+.header-container .logo img{
+	width: 100%;
+}
+.header-container .wrapper{
+	text-align: center;
+	padding-top: 90px;
+}
+#masthead{
+	height: 680px;
+}
+.header-container h3{
+	font-family: 'ralewaylight';
+	font-weight: normal;
+	font-size: 2.2em;
+	line-height: 1.2;
+	margin-bottom: 0;
+}
+.header-container p{
+	margin-top: .7em;
+	font-family: 'RobotoLight';
+	font-size: 18px;
+}
+.ctaColumn ul{
+	margin: 0;
+	padding: 20px 0;
+}
+.header-container li{
+	list-style-type: none;
+}
+.ctaColumn li{
+	display: inline-block;
+	text-align: center;
+	margin: 5px;
+}
+.ctaColumn li a{
+	opacity: .999;
+	-webkit-transition: all 300ms ease-in-out;
+	-moz-transition: all 300ms ease-in-out;
+	-ms-transition: all 300ms ease-in-out;
+	-o-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out;
+	width: 35px;
+	opacity: .4;
+	display: block;
+}
+.ctaColumn li a:hover{
+	opacity: 1;
+}
+.ctaColumn li a img{
+	width: 100%;
+}
+.ctaColumn{
+	text-align: center;
+	padding-top: 0px;
+	margin-bottom: 50px;
+}
+
+
+
+/* ==========================================================================
+   04. Typography
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6{
+	font-style: normal;
+	font-weight: normal;
+	line-height: 115%;
+}   
+h2{
+	font-family: 'ralewaymedium';
+	font-weight: normal;
+	font-size: 20px;
+}
+.main-container h6{
+	color: #3c444a;
+	font-size: 6em;
+	margin: 0.5em 0;
+}
+hr{
+	display: block;
+	height: 1px;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	border-style: none;
+	border-top: 1px solid #ebebeb;
+}
+strong, b{
+	font-family: 'robotobold';
+	font-style: normal;
+	font-weight: normal;
+}
+em{
+	font-family: 'robotoitalic';
+	font-style: normal;
+	font-weight: normal;
+}
+
+
+
+/* ==========================================================================
+   05. Store List
+   ========================================================================== */
+.stores{
+	margin: 0;
+	padding: 0;
+}   
+.stores li{
+	list-style-type: none;
+	display: inline-block;
+	float: none;
+	width: 35px;
+	padding-right: 1em;
+	border-right: 1px solid #dddddd;
+	margin: 0 1em 1em 0;
+}
+.stores li:last-child{
+	padding: 0;
+	margin: 0;
+	border: none;
+}
+.stores li img{
+	width: 100%;
+}
+.stores li a{
+	opacity: .4;
+	-webkit-transition: all 300ms ease-in-out;
+	-moz-transition: all 300ms ease-in-out;
+	-ms-transition: all 300ms ease-in-out;
+	-o-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out;
+}
+.stores li a:hover{
+	opacity: 1;
+}
+
+
+
+/* ==========================================================================
+   06. LayOut
+   ========================================================================== */
+.full{
+	width: 100%;
+	float: none;
+} 
+.half{
+	width: 48%;
+	margin-right: 4%;
+	float: left;
+}
+.third{
+	width: 30%;
+	margin-right: 5%;
+	float: left;
+}
+.fourth{
+	width: 24%;
+	margin-right: 1%;
+	float: left;
+}
+.fifth{
+	width: 18%;
+	margin-right: 2.5%;
+	float: left;
+}
+.two-thirds{
+	width: 65%;
+	margin-right: 5%;
+	float: left;
+}
+.three-fourths{
+	width: 74%;
+	margin-right: 4%;
+	float: left;
+}
+.two-fifths{
+	width: 36%;
+	margin-right: 3%;
+	float: left;
+}
+.three-fifths{
+	width: 61%;
+	margin-right: 2%;
+	float: left;
+}
+.four-fifths{
+	width: 78%;
+	margin-right: 4%;
+	float: left;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.stack{
+	clear: left;
+	float: none;
+}
+.stack.right{
+	clear: right;
+	float: right;
+}   
+.main-container article{
+	margin-bottom: 3em;
+}
+.quote-container{
+	position: relative;	
+}
+.quote-container .wrapper{
+	padding-bottom: 60px;
+}
+
+
+
+/* ==========================================================================
+   07. Slider
+   ========================================================================== */
+   
+.fader{
+	position: absolute;
+	height: 724px;
+	width: 364px;
+	background: url(../img/iphone.png) no-repeat center 0; /*Image of iphone 5 */
+	background-size: 364px 724px;
+	margin: -360px auto 0 -182px;
+	left: 50%;
+}
+@media (min--moz-device-pixel-ratio: 1.5),
+	(-o-min-device-pixel-ratio: 3/2),
+	(-webkit-min-device-pixel-ratio: 1.5),
+	(min-device-pixel-ratio: 1.5),
+	(min-resolution: 1.5dppx) {
+	/* on retina, use image that's scaled by 2 */
+.fader{
+	background: url(../img/iphone@2x.png) no-repeat center 0; /*Image of iphone 5 */
+	background-size: 364px 724px;
+}
+}
+
+
+/* ==========================================================================
+   07. Slider - continued
+   ========================================================================== */
+.fader .flexslider1{
+	width: 291px;
+	height: 516px;
+	position: relative;
+	top: 104px;
+	margin-bottom: 0;
+	margin-right: auto;
+	margin-left: auto;
+	padding-bottom: 50px;
+	left: 1px;
+}
+.fader .flexslider1 img{
+	width: 100%;
+}
+.flexslider1 .flex-control-nav{
+	bottom: -15px;
+}
+.flex-control-paging li a {
+	width: 13px; 
+	height: 13px; 
+	display: block; 
+	background: #485762; /* Change colour of iphone nav dots */
+	cursor: pointer; 
+	text-indent: -9999px; 
+	border-radius: 20px;
+	-webkit-transition: all 300ms ease-in-out;
+	-moz-transition: all 300ms ease-in-out;
+	-ms-transition: all 300ms ease-in-out;
+	-o-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out; 
+}
+.fader .flex-control-paging li a:hover { 
+	background: #5a6c79; /* Change colour of iphone nav dots on hover */
+}
+.fader .flex-control-paging li a.flex-active, .quote .flex-control-paging li a.flex-active { 
+	background: #0ca2d9; /* Change colour of iphone nav dots when active */
+	cursor: default;
+}
+.fader .slides li img{
+	width: 100%;
+}
+.main { 
+	padding: 40px 0 50px; 
+}
+.main-container .main{
+	min-height: 400px;
+}
+.main-container section{
+	border-top: 1px solid #586168;
+	padding-top: 1em;
+	margin-top: 40px;
+}
+blockquote{
+	font-family: 'ralewaylight';
+	margin: 1em 0;
+}
+cite{
+	font-style: normal;
+	font-size: 14px;
+	display: block;
+	margin-top: 1em;
+	font-family: 'RobotoCondensed';
+}
+.flexslider2 {
+	margin-bottom: 20px;
+}
+.quote .slides li{
+	font-size: 1.8em;
+	line-height: 1.4;
+	font-weight: 100;
+	text-align: center;
+	padding-bottom: .5em;
+	width: 244px;
+}
+.quote .flex-control-paging li a:hover { 
+	background: #5a6c79; /* Change colour of iphone nav dots on hover */
+}
+.quote .flex-control-paging li a.flex-active { 
+	cursor: default;
+}
+
+
+
+
+/* ==========================================================================
+   08. FOOTER 
+   ========================================================================== */ 
+.footer-container {
+    padding-bottom: 100px;
+    padding-top: 40px;
+    text-align: center;
+    position: relative;
+}
+.footer-container hr{
+	border-top: 1px solid #4e5a60;
+	margin-top: 3em;
+	margin-bottom: 3em;
+}   
+.footer-container ul{
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+.footer-container li{
+	display: inline-block;
+	text-align: center;
+	list-style-type: none;
+	margin-left: 30px;
+}
+.footer-container li:first-child{
+	margin-left: 0;
+}
+.footer-container li a{
+	-webkit-transition: all 300ms ease-in-out;
+	-moz-transition: all 300ms ease-in-out;
+	-ms-transition: all 300ms ease-in-out;
+	-o-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out;
+}
+.footer-container footer h1{
+	font-family: 'ralewaylight';
+	font-weight: normal;
+	margin-bottom: 1em;
+}
+.footer-container footer { 
+	padding: 20px 0; 
+}
+ul.social-link li:before{
+	display: none;
+}
+ul.social-link{
+	margin-top: 3em;
+	margin-bottom: 2.5em;
+}
+ul.social-link li{
+	display: inline;	
+	padding: 0;
+	margin: 0 .1em;
+}
+ul.social-link a{
+	 font-family: 'socialicoregular';
+	 font-size: 56px;
+	 -webkit-transition: all 250ms ease-in-out;
+	 -moz-transition: all 250ms ease-in-out;
+	 -ms-transition: all 250ms ease-in-out;
+	 -o-transition: all 250ms ease-in-out;
+	 transition: all 250ms ease-in-out;
+	 opacity: 1;
+}
+
+
+
+/* ==========================================================================
+   09. Lip Ups
+   ========================================================================== */
+   
+.lipup{
+	width: 100px;
+	height: 35px;
+	position: absolute;
+	left: 50%;
+	top: -35px;
+	margin-left: -50px;
+}
+.lipup:before, .lipup:after{
+	display: block;
+	content: "";
+	width: 50px;
+	height: 35px;
+	position: absolute;
+}
+.lipup:before{
+	-webkit-border-radius: 0px 0px 100px 0px;
+	border-radius: 0px 0px 100px 0px;
+	left: 0px;
+}
+.lipup:after{
+	-webkit-border-radius: 0px 0px 0px 100px;
+	border-radius: 0px 0px 0px 100px;
+	right: 0px;
+}
+
+
+
+
+
+/* ==========================================================================
+   10. Insert Author's custom styles
+   ========================================================================== */
+
+
+
+
+
+
+/* ==========================================================================
+   11. Media Queries 1140px
+   ========================================================================== */
+@media only screen and (max-width: 1140px) {
+	.wrapper { width: 768px; /* 1140px - 10% for margins */ margin: 0 auto;  }
+}
+
+
+
+/* ==========================================================================
+   12. Media Queries 768
+   ========================================================================== */
+   
+@media only screen and (max-width: 768px) { 
+	.wrapper{
+		width: 480px;
+		margin: 0 auto; 
+	}
+	.header-container .wrapper{
+		padding-top: 50px;
+	}
+	.fader{
+		position: relative;
+	}
+	.fourth, .right{
+		float: none;
+		margin: 0;
+		width: 100%;
+	}
+	.fourth{
+		width: 100%;
+		text-align: center;
+	}
+	.main-container article{
+		padding-top: 1.3em;
+		padding-bottom: 1.3em;
+		margin: 0;
+		border-bottom: 1px solid #ebebeb;
+	}
+
+}
+
+
+
+/* ==========================================================================
+   13. Media Queries 480
+   ========================================================================== */
+
+@media only screen and (max-width: 480px) {
+	.wrapper{
+		max-width: 320px;
+		width: 100%;
+		margin: 0 auto; 
+	} 
+	.fourth{
+		width: 100%;
+		text-align: center;
+	}
+	.main-container article{
+		padding-top: 1.3em;
+		padding-bottom: 1.3em;
+		margin: 0;
+		border-bottom: 1px solid #ebebeb;
+	}
+	.header-container h3{
+		font-size: 1.8em;
+	}
+	.fader{
+		background-size: 300px 597px;
+		margin: -360px auto 0 -150px;
+		height: 597px;
+		width: 300px;
+		padding-bottom: 1em;
+	}
+	@media (min--moz-device-pixel-ratio: 1.5),
+		(-o-min-device-pixel-ratio: 3/2),
+		(-webkit-min-device-pixel-ratio: 1.5),
+		(min-device-pixel-ratio: 1.5),
+		(min-resolution: 1.5dppx) {
+		/* on retina, use image that's scaled by 2 */
+	.fader{
+		background-size: 300px 597px;
+	}
+	}
+	.fader .flexslider1{
+		width: 240px;
+		height: 428px;
+		position: relative;
+		top: 86px;
+		margin-bottom: 0;
+		margin-right: auto;
+		margin-left: auto;
+		padding-bottom: 50px;
+		left: 1px;
+	}
+}
+
+
+
+/* ==========================================================================
+   14. Media Queries 320
+   ========================================================================== */
+
+@media only screen and (max-width: 320px) {
+	.wrapper{
+		width: 94%;
+		margin: 0 auto; 
+		max-width: none;
+	} 
+	.fourth{
+		width: 100%;
+		text-align: center;
+	}
+	.main-container article{
+		padding-top: 1.3em;
+		padding-bottom: 1.3em;
+		margin: 0;
+		border-bottom: 1px solid #ebebeb;
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   15. Helper classes
+   ========================================================================== */
+
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { *zoom: 1; }
+.last{ border: none!important; margin-right: 0!important; }
+
+
+
+
+/* ==========================================================================
+   16. Fonts
+   ========================================================================== */
+
+@font-face {
+    font-family: 'robotobold';
+    src: url('../font/roboto-bold-webfont.eot');
+    src: url('../font/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/roboto-bold-webfont.woff') format('woff'),
+         url('../font/roboto-bold-webfont.ttf') format('truetype'),
+         url('../font/roboto-bold-webfont.svg#robotobold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'robotoitalic';
+    src: url('../font/roboto-italic-webfont.eot');
+    src: url('../font/roboto-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/roboto-italic-webfont.woff') format('woff'),
+         url('../font/roboto-italic-webfont.ttf') format('truetype'),
+         url('../font/roboto-italic-webfont.svg#robotoitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'RobotoLight';
+    src: url('../font/Roboto-Light-webfont.eot');
+    src: url('../font/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/Roboto-Light-webfont.woff') format('woff'),
+         url('../font/Roboto-Light-webfont.ttf') format('truetype'),
+         url('../font/Roboto-Light-webfont.svg#RobotoLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'robotoregular';
+    src: url('../font/roboto-regular-webfont.eot');
+    src: url('../font/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/roboto-regular-webfont.woff') format('woff'),
+         url('../font/roboto-regular-webfont.ttf') format('truetype'),
+         url('../font/roboto-regular-webfont.svg#robotoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'RobotoCondensed';
+    src: url('../font/Roboto-Condensed-webfont.eot');
+    src: url('../font/Roboto-Condensed-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/Roboto-Condensed-webfont.woff') format('woff'),
+         url('../font/Roboto-Condensed-webfont.ttf') format('truetype'),
+         url('../font/Roboto-Condensed-webfont.svg#RobotoCondensed') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'socialicoregular';
+    src: url('../font/socialico-webfont-webfont.eot');
+    src: url('../font/socialico-webfont-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/socialico-webfont-webfont.woff') format('woff'),
+         url('../font/socialico-webfont-webfont.ttf') format('truetype'),
+         url('../font/socialico-webfont-webfont.svg#socialicoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'ralewaylight';
+    src: url('../font/raleway-light-webfont.eot');
+    src: url('../font/raleway-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/raleway-light-webfont.woff') format('woff'),
+         url('../font/raleway-light-webfont.ttf') format('truetype'),
+         url('../font/raleway-light-webfont.svg#ralewaylight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'ralewayregular';
+    src: url('../font/raleway-regular-webfont.eot');
+    src: url('../font/raleway-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/raleway-regular-webfont.woff') format('woff'),
+         url('../font/raleway-regular-webfont.ttf') format('truetype'),
+         url('../font/raleway-regular-webfont.svg#ralewayregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'ralewaymedium';
+    src: url('../font/raleway-medium-webfont.eot');
+    src: url('../font/raleway-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/raleway-medium-webfont.woff') format('woff'),
+         url('../font/raleway-medium-webfont.ttf') format('truetype'),
+         url('../font/raleway-medium-webfont.svg#ralewaymedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+/* ==========================================================================
+   17. Print styles
+   ========================================================================== */
+
+@media print {
+* { background: transparent !important; color: #000 !important; box-shadow:none !important; text-shadow: none !important;}
+a, a:visited { text-decoration: underline; }
+a[href]:after { content: " (" attr(href) ")";}
+abbr[title]:after { content: " (" attr(title) ")"; }
+.ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+img { max-width: 100% !important; page-break-inside: avoid; }
+
+@page { margin: 0.5cm; }
+p, h2, h3 { orphans: 3; widows: 3; }
+h2, h3 { page-break-after: avoid; }
+}
