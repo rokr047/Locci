@@ -34,7 +34,7 @@ class EditGeoNoteViewController: UIViewController, UITextFieldDelegate {
         txtNote.layer.cornerRadius = 15.0
         
         if noteId == -1 {
-            println("ERROR: invalid note id")
+            print("ERROR: invalid note id")
         }
         
         self.txtTitle.delegate = self
@@ -51,7 +51,7 @@ class EditGeoNoteViewController: UIViewController, UITextFieldDelegate {
         return UIStatusBarStyle.LightContent
     }
     
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true);
         return false;
     }
@@ -62,20 +62,23 @@ class EditGeoNoteViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func SaveEdit(sender: AnyObject) {
         
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext = appDelegate.managedObjectContext!
         
         if (existingNote != nil) {
             existingNote.setValue(txtNote.text as String, forKey: "text")
-            existingNote.setValue(txtTitle.text as String, forKey: "title")
+            existingNote.setValue(txtTitle.text as String?, forKey: "title")
         } else {
-            println("ERROR: existingNote should not be nil!")
+            print("ERROR: existingNote should not be nil!")
         }
         
-        context.save(nil)
+        do {
+            try context.save()
+        } catch _ {
+        }
         
         if (delegate != nil) {
-            let _noteTitle: NSString = txtTitle.text
+            let _noteTitle: NSString = txtTitle.text!
             let _noteText: NSString = txtNote.text
             delegate!.userDidUpdateNote(_noteTitle, _noteText: _noteText)
         }

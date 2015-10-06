@@ -58,13 +58,13 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
     
     override func viewDidAppear(animated: Bool) {
         
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext = appDelegate.managedObjectContext!
         
         let fRequest = NSFetchRequest(entityName: "Notes")
         fRequest.returnsObjectsAsFaults = false
         
-        tableData = context.executeFetchRequest(fRequest, error: nil)!
+        tableData = try! context.executeFetchRequest(fRequest)
         
         self.notesTable.reloadData()
     }
@@ -109,7 +109,7 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
             return cell
         }
 
-        var data = tableData[indexPath.row] as Notes
+        let data = tableData[indexPath.row] as! Notes
         
         cell.textLabel?.text = data.title
         cell.detailTextLabel?.text = data.locationname
@@ -127,12 +127,15 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let context: NSManagedObjectContext = appDelegate.managedObjectContext!
             
-            context.deleteObject(tableData[indexPath.row] as NSManagedObject)
+            context.deleteObject(tableData[indexPath.row] as! NSManagedObject)
             tableData.removeAtIndex(indexPath.row)
-            context.save(nil)
+            do {
+                try context.save()
+            } catch _ {
+            }
             
             // Delete the row from the data source
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
@@ -156,10 +159,10 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ViewNoteSegue" {
-            var nextVC: ViewNoteViewController = segue.destinationViewController as ViewNoteViewController
+            let nextVC: ViewNoteViewController = segue.destinationViewController as! ViewNoteViewController
             
-            var selectedRowIndex = self.notesTable.indexPathForSelectedRow()
-            var rowData = tableData[selectedRowIndex!.row] as Notes
+            let selectedRowIndex = self.notesTable.indexPathForSelectedRow
+            let rowData = tableData[selectedRowIndex!.row] as! Notes
             nextVC.noteId = rowData.noteid
             nextVC.noteData = rowData.text
             nextVC.noteTitle = rowData.title
@@ -167,7 +170,7 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
             nextVC.latitude = rowData.latitude
             nextVC.longitude = rowData.longitude
             
-            var selectedNote: NSManagedObject = tableData[selectedRowIndex!.row] as NSManagedObject
+            let selectedNote: NSManagedObject = tableData[selectedRowIndex!.row] as! NSManagedObject
             nextVC.selectedNote = selectedNote
         }
     }
@@ -209,11 +212,11 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
             showShareButton = false
         }
         
-        var alertController = UIAlertController(title: "You are Here", message: showLocInfo, preferredStyle: UIAlertControllerStyle.Alert)
+        let alertController = UIAlertController(title: "You are Here", message: showLocInfo, preferredStyle: UIAlertControllerStyle.Alert)
         
-        var okAction = UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil)
+        let okAction = UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil)
         
-        var shareAction = UIAlertAction(title: "share", style: UIAlertActionStyle.Default) {
+        let shareAction = UIAlertAction(title: "share", style: UIAlertActionStyle.Default) {
             UIAlertAction in
             //println("launching share options...")
             
@@ -242,38 +245,37 @@ class HomeScreenViewController: UIViewController, CLLocationManagerDelegate, UIT
     }
     
     //Location Manager functions that gets back reverseGeoDecoded location data
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        println("Error while updating location " + error.localizedDescription)
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("Error while updating location " + error.localizedDescription)
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks, error)->Void in
             
             if (error != nil) {
-                println("Reverse geocoder failed with error" + error.localizedDescription)
+                print("Reverse geocoder failed with error" + error!.localizedDescription)
                 return
             }
             
-            if placemarks.count > 0 {
-                let pm = placemarks[0] as CLPlacemark
+            if let pm = placemarks?.first {
                 self.displayLocationInfo(pm)
             } else {
-                println("Problem with the data received from geocoder")
+                print("Problem with the data received from geocoder")
             }
         })
     }
     
     func displayLocationInfo(placemark: CLPlacemark?) {
         if let containsPlacemark = placemark {
-            var locationName = (containsPlacemark.name != nil) ? containsPlacemark.name : ""
-            locInfo = locationName
+            let locationName = (containsPlacemark.name != nil) ? containsPlacemark.name : ""
+            locInfo = locationName!
             locInfo = (containsPlacemark.locality != nil) ? ("\(locInfo), \(containsPlacemark.locality)") : "\(locInfo)"
             locInfo = (containsPlacemark.subAdministrativeArea != nil) ? ("\(locInfo), \(containsPlacemark.subAdministrativeArea)") : "\(locInfo)"
             locInfo = (containsPlacemark.administrativeArea != nil) ? ("\(locInfo), \(containsPlacemark.administrativeArea)") : "\(locInfo)"
             locInfo = (containsPlacemark.postalCode != nil) ? ("\(locInfo) \(containsPlacemark.postalCode)") : "\(locInfo)"
             locInfo = (containsPlacemark.country != nil) ? ("\(locInfo), \(containsPlacemark.country)") : "\(locInfo)"
             
-            let curLocation: CLLocation = containsPlacemark.location
+            let curLocation: CLLocation = containsPlacemark.location!
             locInfo = "\(locInfo) \nlat : \(curLocation.coordinate.latitude) \nlong : \(curLocation.coordinate.longitude)"
         }
         

@@ -38,11 +38,11 @@ class ViewController: UIViewController {
         btnContinue.setTitle("continue", forState: UIControlState.Normal)
         
         if(!NSUserDefaults.standardUserDefaults().boolForKey("firstlaunch1.0")){
-            println("First Launch welcome 1")
+            print("First Launch welcome 1")
             fnAnimateLabelAndButton()
         } else {
-            println("Launch Home Screen : Direct")
-            let vcHomeScreen = self.storyboard?.instantiateViewControllerWithIdentifier("vcHomeScreen") as HomeScreenViewController
+            print("Launch Home Screen : Direct")
+            let vcHomeScreen = self.storyboard?.instantiateViewControllerWithIdentifier("vcHomeScreen") as! HomeScreenViewController
             
             self.navigationController?.pushViewController(vcHomeScreen, animated: true)
         }
@@ -72,7 +72,7 @@ class ViewController: UIViewController {
         //We want to show new examples now.
         
         if(!NSUserDefaults.standardUserDefaults().boolForKey("firstlaunch1.0")){
-            println("First Launch welcome 2")
+            print("First Launch welcome 2")
             //Make all description labels hidden.
             lblOne.alpha = 0.0
             lblTwo.alpha = 0.0
@@ -93,31 +93,34 @@ class ViewController: UIViewController {
         } else {
             
             //Code to save the note infro to CoreData
-            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let context: NSManagedObjectContext = appDelegate.managedObjectContext!
             
             //let _entity = NSEntityDescription.entityForName("Notes", inManagedObjectContext: context)
             
-            var newNote = NSEntityDescription.insertNewObjectForEntityForName("Notes", inManagedObjectContext: context) as Notes
+            let newNote = NSEntityDescription.insertNewObjectForEntityForName("Notes", inManagedObjectContext: context) as! Notes
             
-            println("creating sample note")
+            print("creating sample note")
             //Need to get the current count to set the new noteid value
             let fRequest = NSFetchRequest(entityName: "Notes")
             let recordCount = appDelegate.managedObjectContext?.countForFetchRequest(fRequest, error: nil)
             
             //var newNote = Notes(entity: _entity!, insertIntoManagedObjectContext: context)
-            newNote.noteid = 1
+            newNote.noteid = recordCount!+1
             newNote.title = "Sample Note"
             newNote.text = "This is a sample note. Feel free to delete this and create your own :)"
             newNote.latitude = 0.00
             newNote.longitude = 0.00
             newNote.locationname = "everywhere"
             
-            context.save(nil) //TODO NSErrorPointer error handling
+            do {
+                try context.save()
+            } catch _ {
+            } //TODO NSErrorPointer error handling
             //println("sample note saved")
             
             //println("Launch Home Screen : Button")
-            let vcHomeScreen = self.storyboard?.instantiateViewControllerWithIdentifier("vcHomeScreen") as HomeScreenViewController
+            let vcHomeScreen = self.storyboard?.instantiateViewControllerWithIdentifier("vcHomeScreen") as! HomeScreenViewController
             
             self.navigationController?.pushViewController(vcHomeScreen, animated: true)
         }

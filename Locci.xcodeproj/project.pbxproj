@@ -190,7 +190,9 @@
 		201D09251A42CAA30022B967 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Karthikeyan Sreenivasan";
 				TargetAttributes = {
 					201D092C1A42CAA30022B967 = {
@@ -326,6 +328,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -392,6 +395,7 @@
 				INFOPLIST_FILE = LocciDev/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rokr047.locci;
 				PRODUCT_NAME = Locci;
 				PROVISIONING_PROFILE = "";
 			};
@@ -406,6 +410,7 @@
 				INFOPLIST_FILE = LocciDev/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rokr047.locci;
 				PRODUCT_NAME = Locci;
 				PROVISIONING_PROFILE = "";
 			};
@@ -425,6 +430,7 @@
 				);
 				INFOPLIST_FILE = LocciDevTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rokr047.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LocciDevTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocciDev.app/LocciDev";
 			};
@@ -440,6 +446,7 @@
 				);
 				INFOPLIST_FILE = LocciDevTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rokr047.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LocciDevTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocciDev.app/LocciDev";
 			};

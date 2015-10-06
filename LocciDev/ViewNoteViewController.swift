@@ -85,7 +85,7 @@ class ViewNoteViewController: UIViewController, MKMapViewDelegate, NoteUpdatedDe
     }
     
     func fnEditActionHandler (action:UIAlertAction!) -> Void {
-        println("Note sent for editing.")
+        print("Note sent for editing.")
         //Trigger segue via code
         self.performSegueWithIdentifier("EditGeoNoteSegue", sender: nil)
     }
@@ -105,7 +105,7 @@ class ViewNoteViewController: UIViewController, MKMapViewDelegate, NoteUpdatedDe
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "EditGeoNoteSegue" {
-            var nextVC: EditGeoNoteViewController = segue.destinationViewController as EditGeoNoteViewController
+            let nextVC: EditGeoNoteViewController = segue.destinationViewController as! EditGeoNoteViewController
             
             nextVC.noteId = noteId
             nextVC.noteTitle = noteTitle
@@ -119,18 +119,18 @@ class ViewNoteViewController: UIViewController, MKMapViewDelegate, NoteUpdatedDe
     func userDidUpdateNote(_noteTitle: NSString, _noteText: NSString) {
         //println("note updated")
         
-        navBar.topItem?.title = _noteTitle
-        noteText.text = _noteText
+        navBar.topItem?.title = _noteTitle as String
+        noteText.text = _noteText as String
         
-        noteTitle = _noteTitle
-        noteData = _noteText
+        noteTitle = _noteTitle as String
+        noteData = _noteText as String
     }
     
     @IBAction func OpenNoteInMaps(sender: AnyObject) {
         
         let noteCoordinate = CLLocationCoordinate2DMake(latitude, longitude)
-        var notePlacemark = MKPlacemark(coordinate: noteCoordinate, addressDictionary: nil)
-        var noteItemOnMap = MKMapItem(placemark: notePlacemark)
+        let notePlacemark = MKPlacemark(coordinate: noteCoordinate, addressDictionary: nil)
+        let noteItemOnMap = MKMapItem(placemark: notePlacemark)
         
         noteItemOnMap.name = noteTitle
         noteItemOnMap.openInMapsWithLaunchOptions(nil)

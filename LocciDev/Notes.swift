@@ -26,7 +26,7 @@ class Notes: NSManagedObject {
         
         var status: Bool = false
         
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext = appDelegate.managedObjectContext!
         
         let predicate = NSPredicate(format: "noteid = %d", id)
@@ -35,11 +35,14 @@ class Notes: NSManagedObject {
         fRequest.returnsObjectsAsFaults = false
         fRequest.predicate = predicate
         
-        var tableData = context.executeFetchRequest(fRequest, error: nil)!
+        var tableData = try! context.executeFetchRequest(fRequest)
         
         if tableData.count > 0 {
-            context.deleteObject(tableData[0] as NSManagedObject)
-            context.save(nil)
+            context.deleteObject(tableData[0] as! NSManagedObject)
+            do {
+                try context.save()
+            } catch _ {
+            }
             status = true
         }
         
@@ -49,7 +52,7 @@ class Notes: NSManagedObject {
     class func EditNote(id: integer_t, newTitle: String, newText: String) -> Bool {
         //Edit note and set the updated data.
         
-        var status: Bool = false
+        let status: Bool = false
         
         return status
     }

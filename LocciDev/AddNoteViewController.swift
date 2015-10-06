@@ -101,7 +101,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         mapView.showsUserLocation = true
         mapView.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
         
-        var tapGesture = UITapGestureRecognizer(target: self, action: Selector("fnHandleTapGestureOnTextNote:"))
+        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("fnHandleTapGestureOnTextNote:"))
         txtNote.addGestureRecognizer(tapGesture)
         
         
@@ -142,7 +142,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         alertView.layer.shadowRadius = 10.0;
         
         // Create a button and set a listener on it for when it is tapped. Then the button is added to the alert view
-        let btnDismiss = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        let btnDismiss = UIButton(type: UIButtonType.System) as UIButton
         btnDismiss.setTitle("dismiss", forState: UIControlState.Normal)
         btnDismiss.backgroundColor = UIColor.darkGrayColor()
         btnDismiss.frame = CGRectMake(0, 0, alertWidth, 40.0)
@@ -191,7 +191,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         // Animate the alert view using UIKit Dynamics.
         alertView.alpha = 1.0
         
-        var snapBehaviour: UISnapBehavior = UISnapBehavior(item: alertView, snapToPoint: view.center)
+        let snapBehaviour: UISnapBehavior = UISnapBehavior(item: alertView, snapToPoint: view.center)
         animator.addBehavior(snapBehaviour)
     }
     
@@ -199,12 +199,12 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         
         animator.removeAllBehaviors()
         
-        var gravityBehaviour: UIGravityBehavior = UIGravityBehavior(items: [alertView])
+        let gravityBehaviour: UIGravityBehavior = UIGravityBehavior(items: [alertView])
         gravityBehaviour.gravityDirection = CGVectorMake(0.0, 10.0);
         animator.addBehavior(gravityBehaviour)
         
         // This behaviour is included so that the alert view tilts when it falls, otherwise it will go straight down
-        var itemBehaviour: UIDynamicItemBehavior = UIDynamicItemBehavior(items: [alertView])
+        let itemBehaviour: UIDynamicItemBehavior = UIDynamicItemBehavior(items: [alertView])
         itemBehaviour.addAngularVelocity(CGFloat(-M_PI_2), forItem: alertView)
         animator.addBehavior(itemBehaviour)
         
@@ -271,17 +271,19 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     //Delegate method that gets the note data from modal view
     func userDidEnterNote(noteText: NSString) {
         //println("note entered")
-        txtNote.text = noteText
+        txtNote.text = noteText as String
     }
     
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true);
         return false;
     }
     
+    /*
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.view.endEditing(true);
     }
+    */
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -290,7 +292,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "EditNoteSegue" {
-            let noteVC: EditNoteViewController = segue.destinationViewController as EditNoteViewController
+            let noteVC: EditNoteViewController = segue.destinationViewController as! EditNoteViewController
             
             noteVC.delegate = self
             
@@ -304,7 +306,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         var aText = ""
         var isMissingEntry = false
         
-        if txtTitle.text.isEmpty {
+        if txtTitle.text!.isEmpty {
             aText = "you are missing a title for your note"
             isMissingEntry = true
         }
@@ -349,12 +351,12 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         }
         
         //Code to save the note info to CoreData
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext = appDelegate.managedObjectContext!
         
         //let _entity = NSEntityDescription.entityForName("Notes", inManagedObjectContext: context)
         
-        var newNote = NSEntityDescription.insertNewObjectForEntityForName("Notes", inManagedObjectContext: context) as Notes
+        let newNote = NSEntityDescription.insertNewObjectForEntityForName("Notes", inManagedObjectContext: context) as! Notes
         
         //Need to get the current count to set the new noteid value
         let fRequest = NSFetchRequest(entityName: "Notes")
@@ -362,7 +364,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         
         //var newNote = Notes(entity: _entity!, insertIntoManagedObjectContext: context)
         newNote.noteid = recordCount! + 0
-        newNote.title = txtTitle.text
+        newNote.title = txtTitle.text!
         
         // If no note is entered, insert "" into noteText.
         if  txtNote.text.isEmpty || txtNote.text.compare("click here to enter your note", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) == NSComparisonResult.OrderedSame {
@@ -375,7 +377,10 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         newNote.longitude = curLongitude
         newNote.locationname = locationName
         
-        context.save(nil) //TODO NSErrorPointer error handling
+        do {
+            try context.save()
+        } catch _ {
+        } //TODO NSErrorPointer error handling
         locationManager.stopUpdatingLocation()
         //println("note saved")
         
@@ -406,23 +411,22 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     }
     
     //Location Manager functions that gets back reverseGeoDecoded location data
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        println("Error while updating location " + error.localizedDescription)
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("Error while updating location " + error.localizedDescription)
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks, error)->Void in
             
             if (error != nil) {
-                println("Reverse geocoder failed with error" + error.localizedDescription)
+                print("Reverse geocoder failed with error" + error!.localizedDescription)
                 return
             }
             
-            if placemarks.count > 0 {
-                let pm = placemarks[0] as CLPlacemark
+            if let pm = placemarks?.first {
                 self.displayLocationInfo(pm)
             } else {
-                println("Problem with the data received from geocoder")
+                print("Problem with the data received from geocoder")
             }
         })
     }
@@ -435,7 +439,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
             //Location Information
             var locInfo: String = ""
             
-            locationName = (containsPlacemark.name != nil) ? containsPlacemark.name : ""
+            locationName = (containsPlacemark.name != nil) ? containsPlacemark.name! : ""
             locInfo = locationName
             locInfo = (containsPlacemark.locality != nil) ? ("\(locInfo), \(containsPlacemark.locality)") : "\(locInfo)"
             locInfo = (containsPlacemark.subAdministrativeArea != nil) ? ("\(locInfo), \(containsPlacemark.subAdministrativeArea)") : "\(locInfo)"
@@ -445,7 +449,7 @@ class AddNoteViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
 
             lblLocation.text = locInfo
             
-            let curLocation: CLLocation = containsPlacemark.location
+            let curLocation: CLLocation = containsPlacemark.location!
             lblLatLong.text = "\(curLocation.coordinate.latitude) , \(curLocation.coordinate.longitude)"
             
             curLatitude = curLocation.coordinate.latitude as Double
